@@ -2,7 +2,7 @@
 
 namespace _22Percent_BE.Data.Entities
 {
-    public class DetailImportInvoice
+    public class DetailImportInvoice: BaseModel
     {
         public double price { get; set; }
         public double weight { get; set; }

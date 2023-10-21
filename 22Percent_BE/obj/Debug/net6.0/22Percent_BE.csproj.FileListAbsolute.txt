@@ -30,3 +30,13 @@ C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\obj\Debug\
 C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\obj\Debug\net6.0\22Percent_BE.pdb
 C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\obj\Debug\net6.0\22Percent_BE.genruntimeconfig.cache
 C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\obj\Debug\net6.0\ref\22Percent_BE.dll
+C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\net6.0\MySqlConnector.dll
+C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\net6.0\Humanizer.dll
+C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll

@@ -1,3 +1,6 @@
+using _22Percent_BE.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,6 +9,19 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+string _connectString = builder.Configuration.GetConnectionString("Database");
+builder.Services.AddDbContext<_22Context>
+    (
+        options => options.UseMySql
+        (
+            _connectString, 
+            ServerVersion.AutoDetect(_connectString),
+            options => 
+            {
+                options.EnableStringComparisonTranslations();
+            }
+        )
+    );
 
 var app = builder.Build();
 

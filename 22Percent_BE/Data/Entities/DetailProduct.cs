@@ -1,6 +1,6 @@
 ﻿namespace _22Percent_BE.Data.Entities
 {
-    public class DetailProduct
+    public class DetailProduct:BaseModel
     {
         public Product product { get; set; }
         public string productId { get; set; }

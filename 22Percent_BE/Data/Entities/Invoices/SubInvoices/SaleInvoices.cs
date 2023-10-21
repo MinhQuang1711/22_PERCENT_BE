@@ -1,6 +1,6 @@
 ﻿namespace _22Percent_BE.Data.Entities.Invoices.SubInvoices
 {
-    public class SaleInvoices
+    public class SaleInvoices: BaseInvoices
     {
         public double quantity { set; get; }
         public double discount { set; get; }
