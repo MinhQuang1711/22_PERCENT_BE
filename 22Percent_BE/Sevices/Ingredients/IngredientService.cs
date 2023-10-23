@@ -6,9 +6,9 @@ namespace _22Percent_BE.Sevices.Ingredients
 {
     public class IngredientService : IIngredientService
     {
-        private readonly IManagementRepository _managementRepository;
+        private readonly IRepositoryManagement _managementRepository;
 
-        public IngredientService(IManagementRepository managementRepository) 
+        public IngredientService(IRepositoryManagement managementRepository) 
         {
             _managementRepository= managementRepository;
         }

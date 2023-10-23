@@ -2,7 +2,7 @@
 
 namespace _22Percent_BE.Data.Repositories
 {
-    public interface IManagementRepository
+    public interface IRepositoryManagement
     {
         public IIngredientRepository IngredientRepository { get; }
 

@@ -3,11 +3,11 @@ using AutoMapper;
 
 namespace _22Percent_BE.Data.Repositories
 {
-    public class ManagementRepository : IManagementRepository
+    public class RepositoryManagement : IRepositoryManagement
     {
         private readonly Lazy<IIngredientRepository> _lazyIngredientRepository;
 
-        public ManagementRepository(_22Context context,IMapper mapper) 
+        public RepositoryManagement(_22Context context,IMapper mapper) 
         {
             _lazyIngredientRepository = new Lazy<IIngredientRepository>(()=> new IngredientRepository(context,mapper));
         }

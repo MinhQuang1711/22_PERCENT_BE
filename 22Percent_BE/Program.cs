@@ -1,6 +1,8 @@
 using _22Percent_BE.Data;
+using _22Percent_BE.Data.Repositories;
 using _22Percent_BE.Data.Repositories.IngredientRepo;
 using _22Percent_BE.Helpers.Mappers;
+using _22Percent_BE.Sevices;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IRepositoryManagement, RepositoryManagement>();
+builder.Services.AddScoped<IServiceManagement, ServiceManagement>();
 string _connectString = builder.Configuration.GetConnectionString("Database");
 builder.Services.AddDbContext<_22Context>
     (
