@@ -9,7 +9,7 @@ namespace _22Percent_BE.Sevices.Ingredients
         public Task<List<Ingredient>> getAll();
         public Task<Ingredient?> searchById(string id);
         public Task<bool> create(CreateIngredientDto create);
-        public Task<string?> update(string id,UpdateIngredientDto update);
+        public Task<string?> update(UpdateIngredientDto update);
         public Task<List<Ingredient>> searchByFilter(SearchIngredientDto search);
     }
 }
