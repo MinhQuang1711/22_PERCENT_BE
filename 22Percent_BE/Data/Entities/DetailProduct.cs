@@ -2,10 +2,12 @@
 {
     public class DetailProduct:BaseModel
     {
-        public Product product { get; set; }
-        public string productId { get; set; }
-        public string ingredientID { get; set; }  
-        public Ingredient ingredient { get; set; }
+        public double Cost { get; set; }    
+        public double Weight { get; set; }
+        public Product Product { get; set; }
+        public string ProductId { get; set; }
+        public string IngredientID { get; set; }  
+        public Ingredient Ingredient { get; set; }
         
         public DetailProduct() { }
     }
