@@ -52,6 +52,11 @@ namespace _22Percent_BE.Data.Repositories.IngredientRepo
             return await _context.Ingredients.ToListAsync();
         }
 
+        public async Task<Ingredient?> getById(string id)
+        {
+            return await _context.Ingredients.SingleOrDefaultAsync(e=> e.id==id);
+        }
+
         public async Task<List<Ingredient>> search(SearchIngredientDto search)
         {
             var defaulTypeSearch = StringComparison.OrdinalIgnoreCase;
