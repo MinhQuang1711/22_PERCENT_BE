@@ -1,3 +1,6 @@
+using _22Percent_BE.Data.DTOs.Ingredients;
+using _22Percent_BE.Data.Entities;
+using _22Percent_BE.Data.Repositories.IngredientRepo;
 using Microsoft.AspNetCore.Mvc;
 
 namespace _22Percent_BE.Controllers
@@ -12,10 +15,12 @@ namespace _22Percent_BE.Controllers
     };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly IIngredientRepository _repo;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IIngredientRepository repository)
         {
             _logger = logger;
+            _repo=repository;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
@@ -28,6 +33,16 @@ namespace _22Percent_BE.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        [HttpPost("Create")]
+        public async Task<IActionResult> creaye(CreateIngredientDto create)
+        {
+            var result = await _repo.create(create);
+           
+                return Ok(result);
+            
+      
         }
     }
 }
