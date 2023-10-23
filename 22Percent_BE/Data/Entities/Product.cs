@@ -3,13 +3,13 @@
     public class Product: BaseModel
     {
 
-
-        public double cost { get; set; }
-        public string name { get; set; }
-        public double price { get; set; }
-        public string createUser { get; set; }
-        public ICollection<DetailProduct> detailProducts { get; set; }  
-        public ICollection<DetailSaleInvoice> detailSaleInvoices { get; set; }
+        public double Profit { get; set; }
+        public double Cost { get; set; }
+        public string Name { get; set; }
+        public double Price { get; set; }
+        public string CreateUser { get; set; }
+        public ICollection<DetailProduct> DetailProducts { get; set; }  
+        public ICollection<DetailSaleInvoice> DetailSaleInvoices { get; set; }
 
         public Product() { }
     }
