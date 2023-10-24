@@ -6,8 +6,8 @@ namespace _22Percent_BE.Data.DTOs.Ingredients
     {
         public double? Loss { get; set; } = 0;
         public string Name { get; set; }
-        public double Price { get; set; }
-        public double NetWight { get; set; }
+        public double ImportPrice { get; set; }
+        public double NetWeight { get; set; }
 
     }
 }

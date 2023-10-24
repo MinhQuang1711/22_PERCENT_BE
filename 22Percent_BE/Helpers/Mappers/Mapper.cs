@@ -1,4 +1,6 @@
-﻿using _22Percent_BE.Data.DTOs.Ingredients;
+﻿using _22Percent_BE.Data.DTOs.DetailProducts;
+using _22Percent_BE.Data.DTOs.Ingredients;
+using _22Percent_BE.Data.DTOs.Products;
 using _22Percent_BE.Data.Entities;
 using AutoMapper;
 
@@ -8,7 +10,10 @@ namespace _22Percent_BE.Helpers.Mappers
     {
         public Mapper() 
         {
+            CreateMap<CreateProductDto, Product>().ReverseMap();
             CreateMap<CreateIngredientDto, Ingredient>().ReverseMap();
+            CreateMap<CreateDetailProductDto,DetailProduct>().ReverseMap();
+            
         
         }
     }

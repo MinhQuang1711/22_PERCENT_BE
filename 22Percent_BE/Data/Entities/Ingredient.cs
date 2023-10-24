@@ -2,13 +2,14 @@
 {
     public class Ingredient: BaseModel
     {
-        public string name { get; set; }
-        public double loss { get; set; }
-        public double netWeight { get; set; }
-        public double realWeight { get; set; }
-        public double importPrice { get; set; }
-        public ICollection<DetailProduct> detailProducts { get; set; }
-        public ICollection<DetailImportInvoice> detailImportInvoices { get; set; }  
+        public string Name { get; set; }
+        public double Loss { get; set; }
+        public double Cost { get; set; }
+        public double NetWeight { get; set; }
+        public double RealWeight { get; set; }
+        public double ImportPrice { get; set; }
+        public ICollection<DetailProduct> DetailProducts { get; set; }
+        public ICollection<DetailImportInvoice> DetailImportInvoices { get; set; }  
 
         public Ingredient() { }
     }

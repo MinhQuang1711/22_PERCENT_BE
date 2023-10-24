@@ -24,6 +24,8 @@ namespace _22Percent_BE.Data.Repositories.IngredientRepo
             try
             {
                 var ingredient= _mapper.Map<Ingredient>(ingredientDto);
+                ingredient.RealWeight = caculatorRealWeight(ingredient.Loss, ingredient.NetWeight);
+                ingredient.Cost = (ingredient.ImportPrice / ingredient.RealWeight);
                 await _context.Ingredients.AddAsync(ingredient);
                 await _context.SaveChangesAsync();
                 return true;
@@ -33,6 +35,12 @@ namespace _22Percent_BE.Data.Repositories.IngredientRepo
                 return false;
             }
 
+        }
+
+        private double caculatorRealWeight(double loss,double netWeight)
+        {
+            var realWeight = netWeight - (loss/100) * netWeight; 
+            return realWeight;  
         }
 
         public async Task<bool> delete(string id)
@@ -68,7 +76,7 @@ namespace _22Percent_BE.Data.Repositories.IngredientRepo
             }
             if(search.Name != null)
             {
-                filter = filter.Where(e => e.name.Contains(search.Name,defaulTypeSearch));
+                filter = filter.Where(e => e.Name.Contains(search.Name,defaulTypeSearch));
             }
 
             return await filter.ToListAsync();
@@ -82,19 +90,19 @@ namespace _22Percent_BE.Data.Repositories.IngredientRepo
             {
                 if (update.Name != null) 
                 {
-                    result.name = update.Name;
+                    result.Name = update.Name;
                 }
                 if (update.Loss.HasValue) 
                 {
-                    result.loss=update.Loss.Value;
+                    result.Loss=update.Loss.Value;
                 }
                 if (update.ImportPrice.HasValue) 
                 {
-                    result.importPrice=update.ImportPrice.Value;
+                    result.ImportPrice=update.ImportPrice.Value;
                 }
                 if (update.NetWeight.HasValue) 
                 {
-                    result.netWeight=update.NetWeight.Value;    
+                    result.NetWeight=update.NetWeight.Value;    
                 }
                 _context.Update(result);
                 await _context.SaveChangesAsync();

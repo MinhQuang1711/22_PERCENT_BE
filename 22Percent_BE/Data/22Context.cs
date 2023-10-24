@@ -56,7 +56,7 @@ namespace _22Percent_BE.Data
 
             modelBuilder.Entity<DetailProduct>()
                 .HasOne(dp=> dp.Ingredient)
-                .WithMany(e=> e.detailProducts)
+                .WithMany(e=> e.DetailProducts)
                 .HasForeignKey(e=> e.IngredientID)
                 .IsRequired();
 
@@ -95,7 +95,7 @@ namespace _22Percent_BE.Data
 
             modelBuilder.Entity<DetailImportInvoice>()
                 .HasOne(e => e.ingredient)
-                .WithMany(e => e.detailImportInvoices)
+                .WithMany(e => e.DetailImportInvoices)
                 .HasForeignKey(e => e.ingredientId)
                 .IsRequired();
         }
