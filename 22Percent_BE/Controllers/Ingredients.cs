@@ -25,6 +25,10 @@ namespace _22Percent_BE.Controllers
         [HttpPost("Create")]
         public async Task<IActionResult> create(CreateIngredientDto create)
         {
+            if (create.ImportPrice == 0)
+            {
+                return BadRequest("Giá nguyên liệu phải lớn hơn 0");
+            }
             var result = await _serviceManagement.IngredientService.create(create);
             if (result == true)
             {
@@ -54,6 +58,10 @@ namespace _22Percent_BE.Controllers
         [HttpPut("Update")]
         public async Task<IActionResult> update(UpdateIngredientDto update)
         {
+            if (update.ImportPrice == 0)
+            {
+                return BadRequest("Giá nguyên liệu phải lớn hơn 0");
+            }
             var result = await _serviceManagement.IngredientService.update(update);
             if(result == null)
             {

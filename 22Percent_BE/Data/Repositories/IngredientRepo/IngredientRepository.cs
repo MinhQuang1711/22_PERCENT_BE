@@ -95,14 +95,20 @@ namespace _22Percent_BE.Data.Repositories.IngredientRepo
                 if (update.Loss.HasValue) 
                 {
                     result.Loss=update.Loss.Value;
+                    result.RealWeight = caculatorRealWeight(result.Loss,result.NetWeight);
+                    result.Cost = (result.ImportPrice/result.RealWeight);
                 }
                 if (update.ImportPrice.HasValue) 
                 {
                     result.ImportPrice=update.ImportPrice.Value;
+                    result.Cost = (result.ImportPrice / result.RealWeight);
+
                 }
                 if (update.NetWeight.HasValue) 
                 {
-                    result.NetWeight=update.NetWeight.Value;    
+                    result.NetWeight=update.NetWeight.Value;
+                    result.RealWeight = caculatorRealWeight(result.Loss, result.NetWeight);
+                    result.Cost = (result.ImportPrice / result.RealWeight);
                 }
                 _context.Update(result);
                 await _context.SaveChangesAsync();
