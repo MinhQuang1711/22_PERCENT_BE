@@ -15,6 +15,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IRepositoryManagement, RepositoryManagement>();
 builder.Services.AddScoped<IServiceManagement, ServiceManagement>();
+builder.Services.AddControllers().AddJsonOptions(otps=> otps.JsonSerializerOptions.PropertyNamingPolicy=null);
 string _connectString = builder.Configuration.GetConnectionString("Database");
 builder.Services.AddDbContext<_22Context>
     (
