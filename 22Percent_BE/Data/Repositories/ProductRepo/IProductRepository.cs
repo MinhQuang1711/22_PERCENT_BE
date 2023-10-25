@@ -1,9 +1,11 @@
 ﻿using _22Percent_BE.Data.DTOs.Products;
+using _22Percent_BE.Data.Entities;
 
 namespace _22Percent_BE.Data.Repositories.ProductRepo
 {
     public interface IProductRepository
     {
-        public Task<bool> create(CreateProductDto create);
+        public Task<List<Product>> getAll();
+        public Task<string?> create(CreateProductDto create);
     }
 }

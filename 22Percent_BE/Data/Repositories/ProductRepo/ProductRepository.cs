@@ -16,7 +16,7 @@ namespace _22Percent_BE.Data.Repositories.ProductRepo
             _context = context;
             _mapper = mapper;
         }
-        public async Task<bool> create(CreateProductDto create)
+        public async Task<string?> create(CreateProductDto create)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace _22Percent_BE.Data.Repositories.ProductRepo
                     // Không thể tạo sản phẩm khi không tồn tại nguyên liệu
                     if (ingredient.Result == null)
                     {
-                        return false;
+                        return "Một trong số nguyên liệu bạn chọn không tồn tại";
                     }
 
                     detailProduct.Product = product;
@@ -50,12 +50,12 @@ namespace _22Percent_BE.Data.Repositories.ProductRepo
                 _context.DetailProducts.AddRange(detailProductList);
                 _context.Products.Add(product);
                 await _context.SaveChangesAsync();
-                return true;
+                return null;
 
             }
             catch (Exception ex)
             {
-                return false;
+                return ex.Message;
             }
         }
 
@@ -72,6 +72,9 @@ namespace _22Percent_BE.Data.Repositories.ProductRepo
 
         }
 
-
+        public async Task<List<Product>> getAll()
+        {
+            return await _context.Products.ToListAsync();
+        }
     }
 }
