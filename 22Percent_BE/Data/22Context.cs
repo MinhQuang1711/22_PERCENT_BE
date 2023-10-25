@@ -64,6 +64,7 @@ namespace _22Percent_BE.Data
                 .HasOne(e => e.Product)
                 .WithMany(e => e.DetailProducts)
                 .HasForeignKey(e => e.ProductId)
+                .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
 
 

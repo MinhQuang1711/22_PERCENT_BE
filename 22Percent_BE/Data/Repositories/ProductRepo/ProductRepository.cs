@@ -76,5 +76,17 @@ namespace _22Percent_BE.Data.Repositories.ProductRepo
         {
             return await _context.Products.ToListAsync();
         }
+
+        public async Task<string?> delete(BaseModel delete)
+        {
+            var result = await _context.Products.SingleOrDefaultAsync(e => e.id == delete.id); 
+            if(result == null)
+            {
+                return "Sản phẩm không tồn tại";
+            }
+            _context.Products.Remove(result);
+            await _context.SaveChangesAsync();  
+            return null;
+        }
     }
 }
