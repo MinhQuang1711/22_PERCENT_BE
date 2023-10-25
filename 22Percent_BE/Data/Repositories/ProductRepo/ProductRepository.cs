@@ -45,6 +45,7 @@ namespace _22Percent_BE.Data.Repositories.ProductRepo
                     detailProductList.Add(detailProduct);
 
                 }
+                product.Profit = (product.Price - product.Cost);
                 product.DetailProducts = detailProductList;
                 _context.DetailProducts.AddRange(detailProductList);
                 _context.Products.Add(product);
