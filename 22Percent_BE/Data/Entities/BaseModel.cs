@@ -2,10 +2,10 @@
 {
     public class BaseModel
     {
-        public string id { set; get; }
+        public string Id { set; get; }
 
         public BaseModel() {
-            id = Guid.NewGuid().ToString();
+            Id = Guid.NewGuid().ToString();
         }
     }
 }

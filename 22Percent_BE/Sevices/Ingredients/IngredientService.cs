@@ -40,7 +40,7 @@ namespace _22Percent_BE.Sevices.Ingredients
 
         public async Task<string?> update( UpdateIngredientDto update)
         {
-            var result = await _managementRepository.IngredientRepository.update(update.id,update);
+            var result = await _managementRepository.IngredientRepository.update(update.Id,update);
             if (result == false)
             {
                 return "Nguyên liệu không tồn tại";

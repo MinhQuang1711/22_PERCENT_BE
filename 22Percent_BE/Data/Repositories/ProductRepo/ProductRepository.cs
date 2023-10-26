@@ -21,7 +21,7 @@ namespace _22Percent_BE.Data.Repositories.ProductRepo
             try
             {
                 var product = _mapper.Map<Product>(create);
-                product.id = Guid.NewGuid().ToString();
+                product.Id = Guid.NewGuid().ToString();
                 var detailProductList = new List<DetailProduct>();
 
                 foreach (var item in create.DetailProducts)
@@ -36,8 +36,9 @@ namespace _22Percent_BE.Data.Repositories.ProductRepo
                     }
 
                     
-                    detailProduct.ProductId = product.id;
-                    detailProduct.IngredientID = ingredient.Result.id;
+                    detailProduct.ProductId = product.Id;
+                    detailProduct.IngredientID = ingredient.Result.Id;
+                    detailProduct.IngredientName = ingredient.Result.Name;
                     detailProduct.Cost = caculatorCost(item.Weight, ingredient.Result.Cost);
                     product.Cost += detailProduct.Cost;
 
@@ -60,7 +61,7 @@ namespace _22Percent_BE.Data.Repositories.ProductRepo
 
         private async Task<Ingredient?> getIngredient(string id)
         {
-            return await _context.Ingredients.SingleOrDefaultAsync(e => e.id == id);
+            return await _context.Ingredients.SingleOrDefaultAsync(e => e.Id == id);
 
         }
 
@@ -80,7 +81,7 @@ namespace _22Percent_BE.Data.Repositories.ProductRepo
             {
                 
                 var dto= product.ToGetProductDto();
-                dto.id = product.id;
+                dto.Id = product.Id;
                 productDtos.Add(dto); 
             }
             
@@ -89,7 +90,7 @@ namespace _22Percent_BE.Data.Repositories.ProductRepo
 
         public async Task<string?> delete(BaseModel delete)
         {
-            var result = await _context.Products.SingleOrDefaultAsync(e => e.id == delete.id); 
+            var result = await _context.Products.SingleOrDefaultAsync(e => e.Id == delete.Id); 
             if(result == null)
             {
                 return "Sản phẩm không tồn tại";

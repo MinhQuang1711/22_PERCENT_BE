@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _22Percent_BE.Data;
 
@@ -10,9 +11,10 @@ using _22Percent_BE.Data;
 namespace _22Percent_BE.Migrations
 {
     [DbContext(typeof(_22Context))]
-    partial class _22ContextModelSnapshot : ModelSnapshot
+    [Migration("20231025044046_DeleteDetailProductWhenDeleteProduct")]
+    partial class DeleteDetailProductWhenDeleteProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +23,7 @@ namespace _22Percent_BE.Migrations
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.DetailImportInvoice", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("id")
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("importInvoiceId")
@@ -38,7 +40,7 @@ namespace _22Percent_BE.Migrations
                     b.Property<double>("weight")
                         .HasColumnType("double");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.HasIndex("importInvoiceId");
 
@@ -49,7 +51,7 @@ namespace _22Percent_BE.Migrations
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.DetailProduct", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("id")
                         .HasColumnType("varchar(255)");
 
                     b.Property<double>("Cost")
@@ -59,10 +61,6 @@ namespace _22Percent_BE.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(255)");
 
-                    b.Property<string>("IngredientName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
                     b.Property<string>("ProductId")
                         .IsRequired()
                         .HasColumnType("varchar(255)");
@@ -70,7 +68,7 @@ namespace _22Percent_BE.Migrations
                     b.Property<double>("Weight")
                         .HasColumnType("double");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.HasIndex("IngredientID");
 
@@ -81,7 +79,7 @@ namespace _22Percent_BE.Migrations
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.DetailSaleInvoice", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("id")
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("productId")
@@ -95,7 +93,7 @@ namespace _22Percent_BE.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(255)");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.HasIndex("productId");
 
@@ -106,7 +104,7 @@ namespace _22Percent_BE.Migrations
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.Ingredient", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("id")
                         .HasColumnType("varchar(255)");
 
                     b.Property<double>("Cost")
@@ -128,14 +126,14 @@ namespace _22Percent_BE.Migrations
                     b.Property<double>("RealWeight")
                         .HasColumnType("double");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.ToTable("Ingredients");
                 });
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.Invoices.SubInvoices.ImportInvoices", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("id")
                         .HasColumnType("varchar(255)");
 
                     b.Property<DateTime>("createDate")
@@ -148,14 +146,14 @@ namespace _22Percent_BE.Migrations
                     b.Property<double>("total")
                         .HasColumnType("double");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.ToTable("ImportInvoices");
                 });
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.Invoices.SubInvoices.PaymentInvoices", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("id")
                         .HasColumnType("varchar(255)");
 
                     b.Property<DateTime>("createDate")
@@ -172,14 +170,14 @@ namespace _22Percent_BE.Migrations
                     b.Property<double>("total")
                         .HasColumnType("double");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.ToTable("PaymentInvoices");
                 });
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.Invoices.SubInvoices.SaleInvoices", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("id")
                         .HasColumnType("varchar(255)");
 
                     b.Property<DateTime>("createDate")
@@ -198,14 +196,14 @@ namespace _22Percent_BE.Migrations
                     b.Property<double>("total")
                         .HasColumnType("double");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.ToTable("SaleInvoices");
                 });
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.Product", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("id")
                         .HasColumnType("varchar(255)");
 
                     b.Property<double>("Cost")
@@ -225,14 +223,14 @@ namespace _22Percent_BE.Migrations
                     b.Property<double>("Profit")
                         .HasColumnType("double");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.ToTable("Products");
                 });
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.User", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<string>("id")
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("createUser")
@@ -247,7 +245,7 @@ namespace _22Percent_BE.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
                     b.ToTable("Users");
                 });
