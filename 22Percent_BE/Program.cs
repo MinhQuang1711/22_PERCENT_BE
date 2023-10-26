@@ -5,8 +5,16 @@ using _22Percent_BE.Data.Repositories.ProductRepo;
 using _22Percent_BE.Helpers.Mappers;
 using _22Percent_BE.Sevices;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers().AddJsonOptions
+    (
+        otps => otps.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles
+    ); ;
+        
 
 // Add services to the container.
 
@@ -32,6 +40,7 @@ builder.Services.AddDbContext<_22Context>
     );
 
 builder.Services.AddAutoMapper(typeof(Mapper));
+
 
 //Add scoped
 builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();

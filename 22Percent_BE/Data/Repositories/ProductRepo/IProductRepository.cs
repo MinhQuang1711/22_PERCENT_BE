@@ -6,7 +6,7 @@ namespace _22Percent_BE.Data.Repositories.ProductRepo
     public interface IProductRepository
     {
       
-        public Task<List<Product>> getAll();
+        public Task<List<GetproductDto>> getAll();
         public Task<string?> delete(BaseModel delete);
         public Task<string?> create(CreateProductDto create);
     }

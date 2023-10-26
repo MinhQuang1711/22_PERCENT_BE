@@ -35,10 +35,9 @@ namespace _22Percent_BE.Data.Repositories.ProductRepo
                         return "Một trong số nguyên liệu bạn chọn không tồn tại";
                     }
 
-                    detailProduct.Product = product;
+                    
                     detailProduct.ProductId = product.id;
-                    detailProduct.Ingredient = ingredient.Result;
-                    detailProduct.ProductId = ingredient.Result.id;
+                    detailProduct.IngredientID = ingredient.Result.id;
                     detailProduct.Cost = caculatorCost(item.Weight, ingredient.Result.Cost);
                     product.Cost += detailProduct.Cost;
 
@@ -72,9 +71,20 @@ namespace _22Percent_BE.Data.Repositories.ProductRepo
 
         }
 
-        public async Task<List<Product>> getAll()
+        public async Task<List<GetproductDto>> getAll()
         {
-            return await _context.Products.ToListAsync();
+           var products= await _context.Products.Include(e=>e.DetailProducts).ToListAsync();
+            
+           var productDtos= new List<GetproductDto>();
+            foreach (var product in products)
+            {
+                
+                var dto= product.ToGetProductDto();
+                dto.id = product.id;
+                productDtos.Add(dto); 
+            }
+            
+            return productDtos;
         }
 
         public async Task<string?> delete(BaseModel delete)
