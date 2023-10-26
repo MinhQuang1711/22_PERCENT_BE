@@ -39,15 +39,15 @@ namespace _22Percent_BE.Data
 
             // Config primary key
 
-            modelBuilder.Entity<User>().HasKey(e=> e.id);
-            modelBuilder.Entity<Product>().HasKey(e=> e.id);
-            modelBuilder.Entity<Ingredient>().HasKey(e=> e.id);
-            modelBuilder.Entity<SaleInvoices>().HasKey(e => e.id);
-            modelBuilder.Entity<DetailProduct>().HasKey(e => e.id);          
-            modelBuilder.Entity<ImportInvoices>().HasKey(e=> e.id);
-            modelBuilder.Entity<PaymentInvoices>().HasKey(e=> e.id);
-            modelBuilder.Entity<DetailSaleInvoice>().HasKey(e => e.id);
-            modelBuilder.Entity<DetailImportInvoice>().HasKey(e => e.id);
+            modelBuilder.Entity<User>().HasKey(e=> e.Id);
+            modelBuilder.Entity<Product>().HasKey(e=> e.Id);
+            modelBuilder.Entity<Ingredient>().HasKey(e=> e.Id);
+            modelBuilder.Entity<SaleInvoices>().HasKey(e => e.Id);
+            modelBuilder.Entity<DetailProduct>().HasKey(e => e.Id);          
+            modelBuilder.Entity<ImportInvoices>().HasKey(e=> e.Id);
+            modelBuilder.Entity<PaymentInvoices>().HasKey(e=> e.Id);
+            modelBuilder.Entity<DetailSaleInvoice>().HasKey(e => e.Id);
+            modelBuilder.Entity<DetailImportInvoice>().HasKey(e => e.Id);
 
 
             /*

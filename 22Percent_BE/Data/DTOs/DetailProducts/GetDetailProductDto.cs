@@ -18,7 +18,7 @@ namespace _22percent_be.data.dtos.detailproducts
         {
             return new GetDetailProductDto
             {
-               
+                IngredientName = value.IngredientName,
                 IngredientId = value.IngredientID, 
                 ProductId = value.ProductId, 
                 Weight = value.Weight,
