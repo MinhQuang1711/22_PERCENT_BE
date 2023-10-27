@@ -36,7 +36,7 @@ namespace _22Percent_BE.Controllers
             if (result.Result != null)
             {
                 var dto= result.Result.ToGetProductDto();
-                //dto.Id = model.Id;
+                dto.Id = model.Id;
                 return Ok(dto);
             }
             return Ok(result);
