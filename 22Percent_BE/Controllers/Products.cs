@@ -28,6 +28,31 @@ namespace _22Percent_BE.Controllers
             return Ok();
         }
 
+        [HttpPost("Search-By-Id")]
+        public IActionResult searchById(BaseModel model)
+        {
+            var result = _productRepository.GetById(model.Id);
+          
+            if (result.Result != null)
+            {
+                var dto= result.Result.ToGetProductDto();
+                //dto.Id = model.Id;
+                return Ok(dto);
+            }
+            return Ok(result);
+        }
+
+        [HttpPut("Update-Product")]
+        public async Task<IActionResult> update(UpdateProductDto value)
+        {
+            var result = await _productRepository.update(value);
+            if (result!=null)
+            {
+                return BadRequest(result);
+            }
+            return Ok();
+        }
+
         [HttpGet("Get-All")]
         public async Task<IActionResult> getAll() 
         {
