@@ -23,8 +23,6 @@ namespace _22Percent_BE.Sevices.Products
             var product = _mapper.Map<Product>(create);
             product.Id=Guid.NewGuid().ToString();
             await _repositoryManagement.ProductRepository.Create(product);
-            var detailProducts= create.DetailProducts.Select(e=> e.ToDetailProduct(product.Id)).ToList();
-            //TODO implement: Create detail product
             return null;
         }
 
