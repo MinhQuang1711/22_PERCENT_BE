@@ -9,6 +9,6 @@ namespace _22Percent_BE.Sevices.Products
         public Task<List<GetproductDto>>GetAll(); 
         public Task<GetproductDto?> GetById(string id); 
         public Task<string?> CreateProduct(CreateProductDto create);
-        public Task<List<GetDetailProductDto>> SearchByName(string name);
+        public Task<List<GetproductDto>> SearchByName(string name);
     }
 }

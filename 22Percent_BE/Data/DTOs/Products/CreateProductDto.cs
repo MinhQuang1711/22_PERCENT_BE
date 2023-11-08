@@ -1,4 +1,5 @@
 ﻿using _22Percent_BE.Data.DTOs.DetailProducts;
+using _22Percent_BE.Data.Entities;
 
 namespace _22Percent_BE.Data.DTOs.Products
 {

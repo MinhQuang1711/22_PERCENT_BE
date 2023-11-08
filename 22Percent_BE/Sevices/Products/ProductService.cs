@@ -1,4 +1,5 @@
 ﻿using _22percent_be.data.dtos.detailproducts;
+using _22Percent_BE.Data.DTOs.DetailProducts;
 using _22Percent_BE.Data.DTOs.Products;
 using _22Percent_BE.Data.Entities;
 using _22Percent_BE.Data.Repositories;
@@ -17,24 +18,19 @@ namespace _22Percent_BE.Sevices.Products
             _mapper=mapper;
         } 
 
-        public Task<string?> CreateProduct(CreateProductDto create)
+        public async Task<string?> CreateProduct(CreateProductDto create)
         {
             var product = _mapper.Map<Product>(create);
             product.Id=Guid.NewGuid().ToString();
-            product.DetailProducts= create.DetailProducts.Select(e => new DetailProduct()
-            {
-                Weight=e.Weight,    
-                ProductId = product.Id,
-                IngredientID = e.IngredientId, 
-                IngredientName="",
-            }).ToList() ;
+            await _repositoryManagement.ProductRepository.Create(product);
+            var detailProducts= create.DetailProducts.Select(e=> e.ToDetailProduct(product.Id)).ToList();
             //TODO implement: Create detail product
             return null;
         }
 
         public Task<string?> Delete(string id)
         {
-            throw new NotImplementedException();
+            return _repositoryManagement.ProductRepository.Delete(id);
         }
 
         public async Task<List<GetproductDto>> GetAll()
@@ -59,9 +55,18 @@ namespace _22Percent_BE.Sevices.Products
             return product?.ToGetProductDto();
         }
 
-        public Task<List<GetDetailProductDto>> SearchByName(string name)
+        public async Task<List<GetproductDto>> SearchByName(string name)
         {
-            throw new NotImplementedException();
+            var products = await _repositoryManagement.ProductRepository.GetByName(name);
+            var productDtos = new List<GetproductDto>();
+            foreach (var product in products)
+            {
+                var dto = product.ToGetProductDto();
+                dto.Id = product.Id;
+                productDtos.Add(dto);
+            }
+
+            return productDtos;
         }
     }
 }

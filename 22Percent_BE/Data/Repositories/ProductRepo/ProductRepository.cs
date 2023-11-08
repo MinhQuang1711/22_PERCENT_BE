@@ -58,7 +58,9 @@ namespace _22Percent_BE.Data.Repositories.ProductRepo
 
         public async Task<List<Product>> GetByName(string name)
         {
-            var products =  _context.Products.Where(e=> e.Name.Contains(e.Name, StringComparison.OrdinalIgnoreCase));
+            var products =  _context.Products
+                .Include (e => e.DetailProducts)
+                .Where(e=> e.Name.Contains(e.Name, StringComparison.OrdinalIgnoreCase));
 
             return await products.ToListAsync();   
         }
