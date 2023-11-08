@@ -1,6 +1,7 @@
 ﻿using _22Percent_BE.Data.DTOs.Products;
 using _22Percent_BE.Data.Entities;
 using _22Percent_BE.Data.Repositories.ProductRepo;
+using _22Percent_BE.Sevices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,25 +11,29 @@ namespace _22Percent_BE.Controllers
     [ApiController]
     public class Products : ControllerBase
     {
-        private readonly IProductRepository _productRepository;
+        private readonly IServiceManagement _serviceManagement;
 
-        public Products(IProductRepository productRepository) 
+        public Products(IServiceManagement serviceManagement) 
         {
-            _productRepository= productRepository;
+            _serviceManagement = serviceManagement;
         }
 
-        [HttpPost("Search-By-Id")]
-        public IActionResult searchById(BaseModel model)
+        [HttpPost("create")]
+        public async Task<IActionResult> createProduct(CreateProductDto create)
         {
-            var result = _productRepository.GetById(model.Id);
-          
-            if (result.Result != null)
+            try
             {
-                var dto= result.Result.ToGetProductDto();
-                dto.Id = model.Id;
-                return Ok(dto);
+                var productId = Guid.NewGuid().ToString();
+                await _serviceManagement.DetailProductService.CreateList(create.DetailProducts, productId);
+                await _serviceManagement.ProductService.CreateProduct(create, productId);
+                return Ok();
             }
-            return Ok(result);
+            catch (Exception ex) 
+            {
+                return BadRequest(ex.Message);
+            }
+            
+           
         }
 
        

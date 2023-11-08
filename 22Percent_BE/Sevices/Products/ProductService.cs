@@ -18,10 +18,10 @@ namespace _22Percent_BE.Sevices.Products
             _mapper=mapper;
         } 
 
-        public async Task<string?> CreateProduct(CreateProductDto create)
+        public async Task<string?> CreateProduct(CreateProductDto create,string productId)
         {
             var product = _mapper.Map<Product>(create);
-            product.Id=Guid.NewGuid().ToString();
+            product.Id = productId;
             await _repositoryManagement.ProductRepository.Create(product);
             return null;
         }
