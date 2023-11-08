@@ -28,12 +28,29 @@ namespace _22Percent_BE.Controllers
                 await _serviceManagement.ProductService.CreateProduct(create, productId);
                 return Ok();
             }
-            catch (Exception ex) 
+            catch (Exception e) 
             {
-                return BadRequest(ex.Message);
+                return StatusCode(500, e.Message);
+            }  
+        }
+
+        [HttpDelete("delete")]
+
+        public async Task<IActionResult> delete(BaseModel baseModel)
+        {
+            try
+            {
+                var msg=await _serviceManagement.ProductService.Delete(baseModel.Id); 
+                if(msg is null) 
+                {
+                    return BadRequest(msg); 
+                }
+                return Ok();
             }
-            
-           
+            catch(Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
        
