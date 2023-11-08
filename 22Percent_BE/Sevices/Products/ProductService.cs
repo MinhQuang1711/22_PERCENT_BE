@@ -1,4 +1,5 @@
-﻿using _22Percent_BE.Data.DTOs.Products;
+﻿using _22percent_be.data.dtos.detailproducts;
+using _22Percent_BE.Data.DTOs.Products;
 using _22Percent_BE.Data.Entities;
 using _22Percent_BE.Data.Repositories;
 using AutoMapper;
@@ -7,10 +8,10 @@ namespace _22Percent_BE.Sevices.Products
 {
     public class ProductService : IProductService
     {
-        private readonly RepositoryManagement _repositoryManagement;
+        private readonly IRepositoryManagement _repositoryManagement;
         private readonly IMapper _mapper;
 
-        public ProductService(RepositoryManagement repositoryManagement,IMapper mapper) 
+        public ProductService(IRepositoryManagement repositoryManagement,IMapper mapper) 
         {
             _repositoryManagement = repositoryManagement; 
             _mapper=mapper;
@@ -27,19 +28,40 @@ namespace _22Percent_BE.Sevices.Products
                 IngredientID = e.IngredientId, 
                 IngredientName="",
             }).ToList() ;
+            //TODO implement: Create detail product
             return null;
+        }
+
+        public Task<string?> Delete(string id)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<List<GetproductDto>> GetAll()
         {
-            return await _repositoryManagement.ProductRepository.getAll();
+            var products= await _repositoryManagement.ProductRepository.GetAll();
+            var productDtos = new List<GetproductDto>();
+            foreach (var product in products)
+            {
+                var dto = product.ToGetProductDto();
+                dto.Id = product.Id;
+                productDtos.Add(dto);
+            }
+
+            return productDtos;
+            
         }
 
-        public async Task<GetproductDto> GetById(string id)
+        public async Task<GetproductDto?> GetById(string id)
         {
             var product= await _repositoryManagement.ProductRepository.GetById(id);
 
-            return product.ToGetProductDto();
+            return product?.ToGetProductDto();
+        }
+
+        public Task<List<GetDetailProductDto>> SearchByName(string name)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -5,10 +5,11 @@ namespace _22Percent_BE.Data.Repositories.ProductRepo
 {
     public interface IProductRepository
     {
+        public Task<List<Product>> GetAll();
         public Task<Product?> GetById(string id);
-        public Task<List<GetproductDto>> getAll(); 
-        public Task<string?> delete(BaseModel delete);
-        public Task<string?> update(UpdateProductDto update);
-        public Task<string?> create(CreateProductDto create);
+        public Task<string?> Delete(string id);
+        public Task<string?> Create(Product create);
+        public Task<List<Product>> GetByName(string name);
+       
     }
 }
