@@ -64,5 +64,11 @@ namespace _22Percent_BE.Data.Repositories.ProductRepo
 
             return await products.ToListAsync();   
         }
+
+        public async Task Update(Product product)
+        {
+            _context.Products.Update(product);
+            await _context.SaveChangesAsync();
+        }
     }
 }

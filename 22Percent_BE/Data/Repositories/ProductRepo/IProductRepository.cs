@@ -10,6 +10,8 @@ namespace _22Percent_BE.Data.Repositories.ProductRepo
         public Task<string?> Delete(string id);
         public Task<string?> Create(Product create);
         public Task<List<Product>> GetByName(string name);
+
+        public Task Update(Product product);
        
     }
 }

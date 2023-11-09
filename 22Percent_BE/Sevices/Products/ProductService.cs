@@ -4,6 +4,7 @@ using _22Percent_BE.Data.DTOs.Products;
 using _22Percent_BE.Data.Entities;
 using _22Percent_BE.Data.Repositories;
 using AutoMapper;
+using System.Linq;
 
 namespace _22Percent_BE.Sevices.Products
 {
@@ -35,6 +36,7 @@ namespace _22Percent_BE.Sevices.Products
         {
             var products= await _repositoryManagement.ProductRepository.GetAll();
             var productDtos = new List<GetproductDto>();
+
             foreach (var product in products)
             {
                 var dto = product.ToGetProductDto();
@@ -65,6 +67,37 @@ namespace _22Percent_BE.Sevices.Products
             }
 
             return productDtos;
+        }
+
+        public async Task<string?> Update(UpdateProductDto update)
+        {
+            var product = await  _repositoryManagement.ProductRepository.GetById(update.Id);
+            if (product !=null)
+            {
+                if (update.ProductName != null)
+                {
+                    product.Name = update.ProductName;
+                }
+                if (update.Price != null)
+                {
+                    product.Price = (double)update.Price;
+                    product.Profit = product.Price - product.Cost;
+                }
+                if(update.DeatailProduct != null)
+                {
+                    var detailProducts = update.DeatailProduct.Select(e=> e.ToDetailProduct(product.Id)).ToList();
+                    await _repositoryManagement.DetailProductRepository.CreateList(detailProducts);
+                    await _repositoryManagement.DetailProductRepository.DeleteList(product.Id);
+
+                    product.DetailProducts = detailProducts;
+                    update.DeatailProduct.Select(e=> product.Cost += e.Weight * e.Cost);
+                    product.Profit= product.Price- product.Cost;
+                }
+                return null;
+            }
+            return Message.ProductNotExist;
+            
+            
         }
     }
 }

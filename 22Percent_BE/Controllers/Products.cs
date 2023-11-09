@@ -40,7 +40,8 @@ namespace _22Percent_BE.Controllers
         {
             try
             {
-                var msg=await _serviceManagement.ProductService.Delete(baseModel.Id); 
+                var msg=await _serviceManagement.ProductService.Delete(baseModel.Id);
+                await _serviceManagement.DetailProductService.Delete(baseModel.Id);
                 if(msg is null) 
                 {
                     return BadRequest(msg); 

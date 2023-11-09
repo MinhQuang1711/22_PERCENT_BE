@@ -1,5 +1,6 @@
 ﻿using _22Percent_BE.Data.DTOs.DetailProducts;
 using _22Percent_BE.Data.Entities;
+using System.Runtime.CompilerServices;
 
 namespace _22Percent_BE.Data.DTOs.Products
 {

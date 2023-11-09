@@ -13,10 +13,15 @@ namespace _22Percent_BE.Sevices.DetailProducts
             _repositoryManagement=repositoryManagement;
         }   
 
-        public async Task<string?> CreateList(List<CreateDetailProductDto> create,string productId)
+        public async Task CreateList(List<CreateDetailProductDto> create,string productId)
         {
             var detailProducts= create.Select(e=> e.ToDetailProduct(productId)).ToList();
-            return await _repositoryManagement.DetailProductRepository.CreateList(detailProducts);
+            await _repositoryManagement.DetailProductRepository.CreateList(detailProducts);
+        }
+
+        public Task Delete(string productId)
+        {
+            _repositoryManagement.DetailProductRepository.DeleteList(productId);
         }
     }
 }
