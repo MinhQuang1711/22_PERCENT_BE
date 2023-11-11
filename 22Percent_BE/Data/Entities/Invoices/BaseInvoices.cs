@@ -2,9 +2,8 @@
 {
     public class BaseInvoices : BaseModel
     {
-        public DateTime createDate { get; set; }
-        public string createUser { get; set; }  
-        public double total {  get; set; }  
+        public DateTime CreateDate { get; set; } 
+        public double Total {  get; set; }  
 
         public BaseInvoices() { }
     }

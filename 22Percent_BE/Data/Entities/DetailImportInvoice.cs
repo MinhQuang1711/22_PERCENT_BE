@@ -4,12 +4,12 @@ namespace _22Percent_BE.Data.Entities
 {
     public class DetailImportInvoice: BaseModel
     {
-        public double price { get; set; }
-        public double weight { get; set; }
-        public string ingredientId { get; set; }
-        public Ingredient ingredient { get; set; }
-        public string importInvoiceId { get; set; }
-        public ImportInvoices importInvoices { get; set; }
+        public double Price { get; set; }
+        public double Weight { get; set; }
+        public string IngredientId { get; set; }
+        public Ingredient Ingredient { get; set; }
+        public string ImportInvoiceId { get; set; }
+        public ImportInvoices ImportInvoices { get; set; }
 
 
         public DetailImportInvoice() { }

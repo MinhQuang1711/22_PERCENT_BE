@@ -2,8 +2,8 @@
 {
     public class SaleInvoices: BaseInvoices
     {
-        public double quantity { set; get; }
-        public double discount { set; get; }
+        public double Quantity { set; get; }
+        public double Discount { set; get; }
         public ICollection<DetailSaleInvoice> detailSaleInvoices { set; get; }
 
         public SaleInvoices() { }

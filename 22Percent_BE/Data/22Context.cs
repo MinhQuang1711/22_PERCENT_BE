@@ -89,15 +89,15 @@ namespace _22Percent_BE.Data
             */
 
             modelBuilder.Entity<DetailImportInvoice>()
-                .HasOne(e=> e.importInvoices)
-                .WithMany(e=> e.detailImportInvoices)
-                .HasForeignKey(e=> e.importInvoiceId)
+                .HasOne(e=> e.ImportInvoices)
+                .WithMany(e=> e.DetailImportInvoices)
+                .HasForeignKey(e=> e.ImportInvoiceId)
                 .IsRequired();
 
             modelBuilder.Entity<DetailImportInvoice>()
-                .HasOne(e => e.ingredient)
+                .HasOne(e => e.Ingredient)
                 .WithMany(e => e.DetailImportInvoices)
-                .HasForeignKey(e => e.ingredientId)
+                .HasForeignKey(e => e.IngredientId)
                 .IsRequired();
         }
 
