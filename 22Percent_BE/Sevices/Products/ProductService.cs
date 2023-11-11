@@ -14,13 +14,21 @@ namespace _22Percent_BE.Sevices.Products
 
         public async Task<List<GetproductDto>> GetAll()
         {
-            var product= await _repositoryManagement.ProductRepository.GetAll();
-            if (product == null)
-            {
-                return new List<GetproductDto>();   
-            }
-            return  product.Select(e=> e.ToGetProductDto()).ToList();
+            var products= await _repositoryManagement.ProductRepository.GetAll();
+            return  products.Select(e=> e.ToGetProductDto()).ToList();
 
+        }
+
+        public async Task<GetproductDto?> GetProductById(string id)
+        {
+            var product= await _repositoryManagement.ProductRepository.GetById(id);
+            return product?.ToGetProductDto();
+        }
+
+        public async Task<List<GetproductDto>> SearchByFilter(SearchProductDto search)
+        {
+            var products = await _repositoryManagement.ProductRepository.SearchByFilter(search);
+            return products.Select(e => e.ToGetProductDto()).ToList();
         }
     }
 }
