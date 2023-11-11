@@ -73,5 +73,11 @@ namespace _22Percent_BE.Data.Repositories.ProductRepo
                 .ThenInclude(e=> e.Ingredient)
                 .ToListAsync();
         }
+
+        public async Task Update(Product product)
+        {
+           _context.Products.Update(product);
+            await _context.SaveChangesAsync();  
+        }
     }
 }

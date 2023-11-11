@@ -5,6 +5,7 @@ namespace _22Percent_BE.Data.Repositories.ProductRepo
 {
     public interface IProductRepository
     {
+        public Task Update(Product product);
 
         public Task<List<Product>> GetAll();
 

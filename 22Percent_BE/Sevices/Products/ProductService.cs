@@ -42,5 +42,17 @@ namespace _22Percent_BE.Sevices.Products
             var products = await _repositoryManagement.ProductRepository.SearchByFilter(search);
             return products.Select(e => e.ToGetProductDto()).ToList();
         }
+
+        public async Task<string?> Update(UpdateProductDto dto)
+        {
+            var oldProduct =await _repositoryManagement.ProductRepository.GetById(dto.Id);
+            if (oldProduct != null)
+            {
+                var product = dto.ToProduct(oldProduct);
+                await _repositoryManagement.ProductRepository.Update(product);
+                return null;
+            }
+            return Message.ProductNotExist;
+        }
     }
 }

@@ -77,6 +77,24 @@ namespace _22Percent_BE.Controllers
             return Ok();
         }
 
+        [HttpPut("update")]
+        public async Task<IActionResult> Update(UpdateProductDto dto)
+        {
+            try
+            {
+                var message = await _serviceManagement.ProductService.Update(dto);
+                if (message != null)
+                {
+                    return BadRequest(message);
+                }
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         [HttpDelete("delete")]
         public async Task<IActionResult> Delete(BaseModel model)
         {
