@@ -70,17 +70,29 @@ namespace _22Percent_BE.Controllers
         {
             var productId=Guid.NewGuid().ToString();
             var productMessage= await _serviceManagement.ProductService.Create(dto,productId);
-            //var detailProductMessge = await _serviceManagement.DetailProductService.CreateList(dto.DetailProducts,productId);
             if (productMessage != null)
             {
                 return BadRequest(productMessage);
             }
-            //if (detailProductMessge != null)
-            //{
-            //    _serviceManagement.DetailProductService.Delete(productId);
-            //    return BadRequest(detailProductMessge); 
-            //}
-            return Ok(dto);
+            return Ok();
+        }
+
+        [HttpDelete("delete")]
+        public async Task<IActionResult> Delete(BaseModel model)
+        {
+            try
+            {
+                var message = await _serviceManagement.ProductService.Delete(model.Id);
+                if (message != null)
+                {
+                    return BadRequest(message);
+                }
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }
