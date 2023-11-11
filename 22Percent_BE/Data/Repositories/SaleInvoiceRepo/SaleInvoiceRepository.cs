@@ -19,5 +19,14 @@ namespace _22Percent_BE.Data.Repositories.SaleInvoiceRepo
                     .ToListAsync();
             return saleInvoices;
         }
+
+        public async Task<SaleInvoices?> GetById(string id)
+        {
+            var saleInvoice = await _context.SaleInvoices
+                .Include(e => e.DetailSaleInvoices)
+                .ThenInclude(e => e.Product)
+                .SingleOrDefaultAsync(e => e.Id == id);
+            return saleInvoice; 
+        }
     }
 }

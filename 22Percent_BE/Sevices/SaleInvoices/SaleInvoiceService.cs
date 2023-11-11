@@ -17,5 +17,11 @@ namespace _22Percent_BE.Sevices.SaleInvoices
             var saleInvoices= await _repositoryManagement.saleInvoiceRepository.GetAll();
             return saleInvoices.Select(e=> e.ToGetSaleInvoiceDto()).ToList();
         }
+
+        public async Task<GetSaleInvoiceDto?> GetById(string id)
+        {
+            var saleInvoice= await _repositoryManagement.saleInvoiceRepository.GetById(id);
+            return saleInvoice?.ToGetSaleInvoiceDto();
+        }
     }
 }

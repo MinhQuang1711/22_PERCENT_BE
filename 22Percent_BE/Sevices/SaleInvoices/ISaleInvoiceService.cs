@@ -5,5 +5,7 @@ namespace _22Percent_BE.Sevices.SaleInvoices
     public interface ISaleInvoiceService
     {
         public Task<List<GetSaleInvoiceDto>> GetAll();
+
+        public Task<GetSaleInvoiceDto?> GetById(string id);
     }
 }
