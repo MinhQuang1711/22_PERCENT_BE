@@ -19,6 +19,12 @@ namespace _22Percent_BE.Sevices.SaleInvoices
             await _repositoryManagement.saleInvoiceRepository.Create(saleInvoice);
         }
 
+        public async Task<string?> Delete(string id)
+        {
+
+            return await _repositoryManagement.saleInvoiceRepository.Delete(id);
+        }
+
         public async Task<List<GetSaleInvoiceDto>> GetAll()
         {
             var saleInvoices= await _repositoryManagement.saleInvoiceRepository.GetAll();

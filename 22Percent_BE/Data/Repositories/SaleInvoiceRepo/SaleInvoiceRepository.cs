@@ -18,6 +18,18 @@ namespace _22Percent_BE.Data.Repositories.SaleInvoiceRepo
             await _context.SaveChangesAsync();  
         }
 
+        public async Task<string?> Delete(string id)
+        {
+            var saleInvoice = _context.SaleInvoices.SingleOrDefault(e => e.Id == id);
+            if (saleInvoice!=null)
+            {
+                _context.SaleInvoices.Remove(saleInvoice);
+                await _context.SaveChangesAsync();
+                return null;
+            }
+            return Message.SaleInvoiceNotExist; 
+        }
+
         public async Task<List<SaleInvoices>> GetAll()
         {
             var saleInvoices = await _context.SaleInvoices

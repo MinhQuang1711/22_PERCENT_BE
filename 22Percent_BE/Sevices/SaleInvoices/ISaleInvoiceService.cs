@@ -5,6 +5,7 @@ namespace _22Percent_BE.Sevices.SaleInvoices
 {
     public interface ISaleInvoiceService
     {
+        public Task<string?> Delete(string id);
 
         public Task Create(CreateSaleInvoiceDto dto);
 

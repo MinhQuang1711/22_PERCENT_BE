@@ -58,5 +58,23 @@ namespace _22Percent_BE.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+        [HttpDelete("delete")]
+        public async Task<IActionResult> Delete(BaseModel model)
+        {
+            try
+            {
+                var message= await _serviceManagement.SaleInvoiceService.Delete(model.Id);
+                if (message != null)
+                {
+                    return NotFound(message);
+                }
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }
