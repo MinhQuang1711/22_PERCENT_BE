@@ -1,4 +1,5 @@
-﻿using _22Percent_BE.Data.Entities;
+﻿using _22Percent_BE.Data.DTOs.SaleInvoices;
+using _22Percent_BE.Data.Entities;
 using _22Percent_BE.Sevices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,11 +8,11 @@ namespace _22Percent_BE.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SaleInvoices : ControllerBase
+    public class SaleInvoice : ControllerBase
     {
         private readonly IServiceManagement _serviceManagement;
 
-        public SaleInvoices(IServiceManagement serviceManagement) 
+        public SaleInvoice(IServiceManagement serviceManagement) 
         {
             _serviceManagement = serviceManagement;
         }
@@ -37,6 +38,20 @@ namespace _22Percent_BE.Controllers
             {
                 var dto = await _serviceManagement.SaleInvoiceService.GetById(model.Id); 
                 return Ok(dto);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPost("create")]
+        public async Task<IActionResult> Create(CreateSaleInvoiceDto dto)
+        {
+            try
+            {
+                await _serviceManagement.SaleInvoiceService.Create(dto);
+                return Ok();
             }
             catch (Exception ex)
             {

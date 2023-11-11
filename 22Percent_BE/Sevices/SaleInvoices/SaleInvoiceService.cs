@@ -1,4 +1,5 @@
 ﻿using _22Percent_BE.Data.DTOs.PaymentInvoices;
+using _22Percent_BE.Data.DTOs.SaleInvoices;
 using _22Percent_BE.Data.Repositories;
 
 namespace _22Percent_BE.Sevices.SaleInvoices
@@ -10,6 +11,12 @@ namespace _22Percent_BE.Sevices.SaleInvoices
         public SaleInvoiceService(IRepositoryManagement repositoryManagement)
         {
             _repositoryManagement = repositoryManagement;
+        }
+
+        public async Task Create(CreateSaleInvoiceDto dto)
+        {
+            var saleInvoice= dto.ToSaleInvoicce();
+            await _repositoryManagement.saleInvoiceRepository.Create(saleInvoice);
         }
 
         public async Task<List<GetSaleInvoiceDto>> GetAll()

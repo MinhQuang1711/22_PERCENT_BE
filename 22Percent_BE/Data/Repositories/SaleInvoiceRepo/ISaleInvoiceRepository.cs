@@ -7,5 +7,7 @@ namespace _22Percent_BE.Data.Repositories.SaleInvoiceRepo
         public Task<List<SaleInvoices>> GetAll();
 
         public Task<SaleInvoices?> GetById(string id);
+
+        public Task Create(SaleInvoices saleInvoices);
     }
 }

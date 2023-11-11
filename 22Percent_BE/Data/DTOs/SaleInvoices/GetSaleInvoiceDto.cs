@@ -15,7 +15,7 @@ namespace _22Percent_BE.Data.DTOs.PaymentInvoices
 
     public static class SaleInvoiceEx
     {
-        public static GetSaleInvoiceDto ToGetSaleInvoiceDto(this SaleInvoices invoices) 
+        public static GetSaleInvoiceDto ToGetSaleInvoiceDto(this _22Percent_BE.Data.Entities.Invoices.SubInvoices.SaleInvoices invoices) 
         {
             return new GetSaleInvoiceDto
             {
