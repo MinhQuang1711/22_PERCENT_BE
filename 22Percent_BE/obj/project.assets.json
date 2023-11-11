@@ -1385,19 +1385,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Dell\\.nuget\\packages\\": {}
+    "C:\\Users\\ASUS\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dell\\PersionalProject\\22_PERCENT_BE\\22Percent_BE\\22Percent_BE.csproj",
+      "projectUniqueName": "C:\\Users\\ASUS\\PersonalProject\\22_PERCENT_BE\\22Percent_BE\\22Percent_BE\\22Percent_BE.csproj",
       "projectName": "22Percent_BE",
-      "projectPath": "C:\\Users\\Dell\\PersionalProject\\22_PERCENT_BE\\22Percent_BE\\22Percent_BE.csproj",
-      "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dell\\PersionalProject\\22_PERCENT_BE\\22Percent_BE\\obj\\",
+      "projectPath": "C:\\Users\\ASUS\\PersonalProject\\22_PERCENT_BE\\22Percent_BE\\22Percent_BE\\22Percent_BE.csproj",
+      "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ASUS\\PersonalProject\\22_PERCENT_BE\\22Percent_BE\\22Percent_BE\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1465,7 +1465,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

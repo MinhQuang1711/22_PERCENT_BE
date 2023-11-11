@@ -19,9 +19,9 @@ namespace _22Percent_BE.Sevices.DetailProducts
             await _repositoryManagement.DetailProductRepository.CreateList(detailProducts);
         }
 
-        public Task Delete(string productId)
+        public async Task Delete(string productId)
         {
-            _repositoryManagement.DetailProductRepository.DeleteList(productId);
+           await _repositoryManagement.DetailProductRepository.DeleteList(productId);
         }
     }
 }

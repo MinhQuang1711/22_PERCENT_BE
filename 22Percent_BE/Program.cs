@@ -1,7 +1,6 @@
 using _22Percent_BE.Data;
 using _22Percent_BE.Data.Repositories;
 using _22Percent_BE.Data.Repositories.IngredientRepo;
-using _22Percent_BE.Data.Repositories.ProductRepo;
 using _22Percent_BE.Helpers.Mappers;
 using _22Percent_BE.Sevices;
 using Microsoft.EntityFrameworkCore;
@@ -44,7 +43,6 @@ builder.Services.AddAutoMapper(typeof(Mapper));
 
 //Add scoped
 builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();
-builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();
 
