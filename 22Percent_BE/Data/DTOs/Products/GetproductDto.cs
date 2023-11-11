@@ -19,6 +19,7 @@ namespace _22Percent_BE.Data.DTOs.Products
         {
             return new GetproductDto
             {
+                Id = product.Id,
                 Cost = product.Cost,
                 Name = product.Name,
                 Price = product.Price,
