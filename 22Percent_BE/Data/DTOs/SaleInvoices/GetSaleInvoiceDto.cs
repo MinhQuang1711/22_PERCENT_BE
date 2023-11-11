@@ -6,8 +6,8 @@ namespace _22Percent_BE.Data.DTOs.PaymentInvoices
 {
     public class GetSaleInvoiceDto:BaseModel
     {
-
         public int Quantity { get; set; }
+        public double Discount { get; set; }
         public double TotalPrice {  get; set; }
         public DateTime CreateDate { get; set; }
         public List<GetDetailSaleInvoiceDto> DetailSaleInvoices { get; set; }
@@ -20,6 +20,7 @@ namespace _22Percent_BE.Data.DTOs.PaymentInvoices
             return new GetSaleInvoiceDto
             {
                 Id = invoices.Id,
+                Discount = invoices.Discount,
                 TotalPrice = invoices.Total,
                 Quantity = invoices.Quantity,
                 CreateDate = invoices.CreateDate,
