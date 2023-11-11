@@ -72,15 +72,15 @@ namespace _22Percent_BE.Data
                 Config relationship many to many for SaleInvoice and Product using DtailSaleInvoice    
             */
             modelBuilder.Entity<DetailSaleInvoice>()
-                .HasOne(e=> e.product)
+                .HasOne(e=> e.Product)
                 .WithMany(e=> e.DetailSaleInvoices)
-                .HasForeignKey(e=> e.productId)
+                .HasForeignKey(e=> e.ProductId)
                 .IsRequired(); 
 
             modelBuilder.Entity<DetailSaleInvoice>()
-                .HasOne(e=> e.saleInvoices)
-                .WithMany(e=> e.detailSaleInvoices)
-                .HasForeignKey(e=> e.saleInvoiceId)
+                .HasOne(e=> e.SaleInvoices)
+                .WithMany(e=> e.DetailSaleInvoices)
+                .HasForeignKey(e=> e.SaleInvoiceId)
                 .IsRequired();
 
 
