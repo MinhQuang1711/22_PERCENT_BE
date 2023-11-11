@@ -64,5 +64,23 @@ namespace _22Percent_BE.Controllers
             }
 
         }
+
+        [HttpPost("create")]
+        public async Task<IActionResult> Create(CreateProductDto dto)
+        {
+            var productId=Guid.NewGuid().ToString();
+            var productMessage= await _serviceManagement.ProductService.Create(dto,productId);
+            //var detailProductMessge = await _serviceManagement.DetailProductService.CreateList(dto.DetailProducts,productId);
+            if (productMessage != null)
+            {
+                return BadRequest(productMessage);
+            }
+            //if (detailProductMessge != null)
+            //{
+            //    _serviceManagement.DetailProductService.Delete(productId);
+            //    return BadRequest(detailProductMessge); 
+            //}
+            return Ok(dto);
+        }
     }
 }

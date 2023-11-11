@@ -25,7 +25,19 @@ namespace _22Percent_BE.Data.Repositories.DetailProductRepo
             }
         }
 
-        public async Task DeleteList(string productId)
+        public string? DeleteList(string productId)
+        {
+            var detailProduct= _context.DetailProducts.Find(productId);
+            if (detailProduct != null)
+            {
+                _context.DetailProducts.Remove(detailProduct);
+                _context.SaveChanges();
+                return null;
+            }
+            return Message.DetailProductNotExist;
+        }
+
+        public async Task DeleteListAsync(string productId)
         {
             var detailProductList = _context.DetailProducts.Where(e => e.ProductId == productId).ToList();
             _context.DetailProducts.RemoveRange(detailProductList);

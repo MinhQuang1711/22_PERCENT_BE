@@ -13,6 +13,20 @@ namespace _22Percent_BE.Data.Repositories.ProductRepo
             _context=context;
         }
 
+        public async Task<string?> Create(Product product)
+        {
+            try
+            {
+                _context.Products.Add(product);
+                await _context.SaveChangesAsync();
+                return null;
+            }
+            catch (Exception ex) 
+            {
+                return ex.Message;
+            }
+        }
+
         public async Task<List<Product>> GetAll()
         {
             return await  _context.Products

@@ -7,8 +7,11 @@ namespace _22Percent_BE.Data.Repositories.ProductRepo
     {
         public Task<List<Product>> GetAll();
         
-        public Task<Product?> GetById(string id); 
+        public Task<Product?> GetById(string id);
+
+        public Task<string?> Create(Product product);
 
         public Task<List<Product>> SearchByFilter(SearchProductDto search);
+
     }
 }

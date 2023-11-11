@@ -1,5 +1,6 @@
 ﻿using _22Percent_BE.Data.DTOs.Products;
 using _22Percent_BE.Data.Entities;
+using _22Percent_BE.Sevices;
 
 namespace _22Percent_BE.Data.DTOs.DetailProducts
 {
@@ -15,14 +16,15 @@ namespace _22Percent_BE.Data.DTOs.DetailProducts
     }
     public static class CreateDetailProductDtoExtension
     {
-        public static DetailProduct ToDetailProduct(this CreateDetailProductDto detailProduct, string productId)
+        public static DetailProduct ToDetailProduct(this CreateDetailProductDto dto, string productId)
         {
+
             return new DetailProduct
             {
+                Weight = dto.Weight,
                 ProductId = productId,
-                IngredientID = detailProduct.IngredientId,
-                Weight = detailProduct.Weight
-
+                Cost = dto.Cost * dto.Weight,
+                IngredientID = dto.IngredientId,
             };
         }
     }

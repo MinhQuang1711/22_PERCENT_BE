@@ -6,6 +6,8 @@ namespace _22Percent_BE.Data.Repositories.DetailProductRepo
     {
         public Task<string?> CreateList(List<DetailProduct> list);
 
-        public Task DeleteList(string productId);
+        public Task DeleteListAsync(string productId);
+
+        public string? DeleteList(string productId);
     }
 }

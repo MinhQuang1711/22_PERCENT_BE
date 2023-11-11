@@ -5,7 +5,8 @@ namespace _22Percent_BE.Sevices.DetailProducts
 {
     public interface IDetailProductService
     {
-        public Task CreateList(List<CreateDetailProductDto> create,string productId);
-        public Task Delete(string productId);
+        public Task<string?> CreateList(List<CreateDetailProductDto> create,string productId);
+        public Task DeleteAysnc(string productId);
+        public string? Delete(string productId);
     }
 }

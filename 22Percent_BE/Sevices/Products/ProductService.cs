@@ -1,4 +1,5 @@
 ﻿using _22Percent_BE.Data.DTOs.Products;
+using _22Percent_BE.Data.Entities;
 using _22Percent_BE.Data.Repositories;
 
 namespace _22Percent_BE.Sevices.Products
@@ -10,6 +11,12 @@ namespace _22Percent_BE.Sevices.Products
         public ProductService(IRepositoryManagement repositoryManagement) 
         {
             _repositoryManagement=repositoryManagement;
+        }
+
+        public Task<string?> Create(CreateProductDto create, string productId)
+        {
+            var product = create.ToProduct(productId);
+            return _repositoryManagement.ProductRepository.Create(product); 
         }
 
         public async Task<List<GetproductDto>> GetAll()
