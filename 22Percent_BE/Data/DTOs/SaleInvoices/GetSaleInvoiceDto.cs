@@ -1,6 +1,7 @@
 ﻿using _22Percent_BE.Data.DTOs.DetailPaymentInvoices;
 using _22Percent_BE.Data.Entities;
 using _22Percent_BE.Data.Entities.Invoices.SubInvoices;
+using _22Percent_BE.Data.Enums;
 
 namespace _22Percent_BE.Data.DTOs.PaymentInvoices
 {
@@ -10,6 +11,7 @@ namespace _22Percent_BE.Data.DTOs.PaymentInvoices
         public double Discount { get; set; }
         public double TotalPrice {  get; set; }
         public DateTime CreateDate { get; set; }
+        public PaymentType PaymentType { get; set; }
         public List<GetDetailSaleInvoiceDto> DetailSaleInvoices { get; set; }
     }
 
@@ -19,11 +21,12 @@ namespace _22Percent_BE.Data.DTOs.PaymentInvoices
         {
             return new GetSaleInvoiceDto
             {
-                Id = invoices.Id,
-                Discount = invoices.Discount,
+                Id = invoices.Id,   
                 TotalPrice = invoices.Total,
                 Quantity = invoices.Quantity,
+                Discount = invoices.Discount,
                 CreateDate = invoices.CreateDate,
+                PaymentType = invoices.PaymentType,
                 DetailSaleInvoices = invoices.DetailSaleInvoices.Select(e=> e.ToDetailSaleInvoiceDto()).ToList(),
             }; 
         }

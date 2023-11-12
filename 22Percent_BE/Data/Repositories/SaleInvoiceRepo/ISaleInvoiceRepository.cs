@@ -1,4 +1,5 @@
-﻿using _22Percent_BE.Data.Entities.Invoices.SubInvoices;
+﻿using _22Percent_BE.Data.DTOs.SaleInvoices;
+using _22Percent_BE.Data.Entities.Invoices.SubInvoices;
 
 namespace _22Percent_BE.Data.Repositories.SaleInvoiceRepo
 {
@@ -12,6 +13,8 @@ namespace _22Percent_BE.Data.Repositories.SaleInvoiceRepo
         public Task<SaleInvoices?> GetById(string id);
 
         public Task Create(SaleInvoices saleInvoices);
+
+        public Task<List<SaleInvoices>> GetByFilter(SearchSaleInvoiceDto dto);
         
     }
 }

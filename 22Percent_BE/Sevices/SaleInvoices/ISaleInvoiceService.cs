@@ -13,5 +13,7 @@ namespace _22Percent_BE.Sevices.SaleInvoices
 
         public Task<GetSaleInvoiceDto?> GetById(string id);
 
+        public Task<List<GetSaleInvoiceDto>> GetByFilter(SearchSaleInvoiceDto dto); 
+
     }
 }

@@ -46,6 +46,20 @@ namespace _22Percent_BE.Controllers
             }
         }
 
+        [HttpPost("search-by-filter")]
+        public async Task<IActionResult> GetByFilter(SearchSaleInvoiceDto dto)
+        {
+            try
+            {
+                var dtos = await _serviceManagement.SaleInvoiceService.GetByFilter(dto);
+                return Ok(dtos);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         [HttpPost("create")]
         public async Task<IActionResult> Create(CreateSaleInvoiceDto dto)
         {
@@ -57,7 +71,6 @@ namespace _22Percent_BE.Controllers
                     return Ok();
                 }
                 return BadRequest(Message.PaymentTypeNotExist);
-                
             }
             catch (Exception ex)
             {

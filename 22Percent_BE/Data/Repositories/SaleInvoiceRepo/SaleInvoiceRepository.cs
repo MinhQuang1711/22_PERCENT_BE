@@ -1,4 +1,5 @@
-﻿using _22Percent_BE.Data.Entities.Invoices.SubInvoices;
+﻿using _22Percent_BE.Data.DTOs.SaleInvoices;
+using _22Percent_BE.Data.Entities.Invoices.SubInvoices;
 using Microsoft.EntityFrameworkCore;
 
 namespace _22Percent_BE.Data.Repositories.SaleInvoiceRepo
@@ -37,6 +38,27 @@ namespace _22Percent_BE.Data.Repositories.SaleInvoiceRepo
                     .ThenInclude(e => e.Product)
                     .ToListAsync();
             return saleInvoices;
+        }
+
+        public async Task<List<SaleInvoices>> GetByFilter(SearchSaleInvoiceDto dto)
+        {
+            var filter = _context.SaleInvoices.AsQueryable();
+            if (dto.SaleInvoiceId != null)
+            {
+                filter = filter.Where(e => e.Id == dto.SaleInvoiceId);
+            }
+            if (dto.PaymentType != null)
+            {
+                filter = filter.Where(e => e.PaymentType == dto.PaymentType);
+            }
+            if (dto.FromTime != null && dto.EndTime != null)
+            {
+                filter = filter.Where(e => e.CreateDate >= dto.FromTime && e.CreateDate <= dto.EndTime);
+            }
+            return await filter
+                .Include(e => e.DetailSaleInvoices) 
+                .ThenInclude(e => e.Product)
+                .ToListAsync();
         }
 
         public async Task<SaleInvoices?> GetById(string id)
