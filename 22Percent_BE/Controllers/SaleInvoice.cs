@@ -1,5 +1,6 @@
 ﻿using _22Percent_BE.Data.DTOs.SaleInvoices;
 using _22Percent_BE.Data.Entities;
+using _22Percent_BE.Data.Enums;
 using _22Percent_BE.Sevices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -50,8 +51,13 @@ namespace _22Percent_BE.Controllers
         {
             try
             {
-                await _serviceManagement.SaleInvoiceService.Create(dto);
-                return Ok();
+                if (Enum.IsDefined(typeof(PaymentType), dto.PaymentType))
+                {
+                    await _serviceManagement.SaleInvoiceService.Create(dto);
+                    return Ok();
+                }
+                return BadRequest(Message.PaymentTypeNotExist);
+                
             }
             catch (Exception ex)
             {
