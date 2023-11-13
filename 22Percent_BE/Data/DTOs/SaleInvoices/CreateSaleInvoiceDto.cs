@@ -16,7 +16,7 @@ namespace _22Percent_BE.Data.DTOs.SaleInvoices
     {
         public static _22Percent_BE.Data.Entities.Invoices.SubInvoices.SaleInvoices ToSaleInvoicce(this CreateSaleInvoiceDto dto)
         {
-            var id= Guid.NewGuid().ToString();
+            var id= "HD"+DateTime.Now.ToString("yyyyMMddHHmmss");
             var detailSaleInvoices= dto.DetailSaleInvoiceDtos.Select(e=> e.ToDetailSaleInvoice(id)).ToList();
             return new Entities.Invoices.SubInvoices.SaleInvoices 
             {
