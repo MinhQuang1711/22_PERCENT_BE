@@ -1,4 +1,5 @@
 ﻿using _22Percent_BE.Data.Repositories;
+using _22Percent_BE.Sevices.ImportInvoices;
 using _22Percent_BE.Sevices.Ingredients;
 using _22Percent_BE.Sevices.Products;
 using _22Percent_BE.Sevices.SaleInvoices;
@@ -11,6 +12,7 @@ namespace _22Percent_BE.Sevices
         private readonly Lazy<IProductService> _prductService;
         private readonly Lazy<IIngredientService> _ingredientService;
         private readonly Lazy<ISaleInvoiceService> _saleInvoiceService;
+        private readonly Lazy<IImportInvoiceService> _importInvoiceService;
 
         public ServiceManagement(IRepositoryManagement repositoryManagement, IMapper mapper) 
         {
@@ -19,7 +21,12 @@ namespace _22Percent_BE.Sevices
             _ingredientService = new Lazy<IIngredientService>(()=> new IngredientService(repositoryManagement));
 
             _saleInvoiceService = new Lazy<ISaleInvoiceService>(() => new SaleInvoiceService(repositoryManagement));
+
+            _importInvoiceService = new Lazy<IImportInvoiceService>(() => new ImportInvoiceService(repositoryManagement));
         }
+
+
+        public IImportInvoiceService ImportInvoiceService => _importInvoiceService.Value;
 
         public ISaleInvoiceService SaleInvoiceService => _saleInvoiceService.Value;
 
