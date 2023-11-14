@@ -19,6 +19,21 @@ namespace _22Percent_BE.Controllers
         }
 
 
+        [HttpGet("get-all")]
+        public async Task<IActionResult> GetAll()
+        {
+            try
+            {
+                var dtos = await _serviceManagement.ImportInvoiceService.GetAll();
+                return Ok(dtos);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+
         /*
             * Thực hiện update ingredient sau khi thành công sẽ thêm mới ImportInvoice
         */

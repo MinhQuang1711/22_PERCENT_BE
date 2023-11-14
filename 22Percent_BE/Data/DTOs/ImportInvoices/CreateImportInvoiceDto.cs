@@ -19,6 +19,7 @@ namespace _22Percent_BE.Data.DTOs.ImportInvoices
             {
                 Id = id,
                 CreateDate = DateTime.Now,
+                DetailImportInvoices = dto.DetailImportInvoice.Select(e=> e.ToDetailImportInvoice(id)).ToList(),
                 Total = GetTotalPrice(dto.DetailImportInvoice),
             };
         }

@@ -30,5 +30,13 @@ namespace _22Percent_BE.Data.Repositories.ImportInvoiceRepo
             return Message.ImportInvoiceNotExist; 
             
         }
+
+        public async Task<List<ImportInvoices>> GetAll()
+        {
+           return await _context.ImportInvoices
+                .Include(e=> e.DetailImportInvoices)
+                    .ThenInclude(e=> e.Ingredient)
+                .ToListAsync();
+        }
     }
 }
