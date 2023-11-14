@@ -117,5 +117,45 @@ namespace _22Percent_BE.Data.Repositories.IngredientRepo
             }
             return false;
         }
+
+        public async Task<string?> UpdateList(List<UpdateIngredientDto> ingredientDtos)
+        {
+            foreach (var item in ingredientDtos)
+            {
+                var result = await _context.Ingredients.SingleOrDefaultAsync(e => e.Id == item.Id);
+                if (result != null)
+                {
+                    if (item.Name != null)
+                    {
+                        result.Name = item.Name;
+                    }
+                    if (item.Loss.HasValue)
+                    {
+                        result.Loss = item.Loss.Value;
+                        result.RealWeight = caculatorRealWeight(result.Loss, result.NetWeight);
+                        result.Cost = (result.ImportPrice / result.RealWeight);
+                    }
+                    if (item.ImportPrice.HasValue)
+                    {
+                        result.ImportPrice = item.ImportPrice.Value;
+                        result.Cost = (result.ImportPrice / result.RealWeight);
+
+                    }
+                    if (item.NetWeight.HasValue)
+                    {
+                        result.NetWeight = item.NetWeight.Value;
+                        result.RealWeight = caculatorRealWeight(result.Loss, result.NetWeight);
+                        result.Cost = (result.ImportPrice / result.RealWeight);
+                    }
+                    _context.Update(result);
+                }
+                await _context.SaveChangesAsync();
+                return null;
+
+            }
+            return Message.IngredientNotExist;
+            
+        }
+        
     }
 }

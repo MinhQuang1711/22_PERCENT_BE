@@ -26,14 +26,11 @@ namespace _22Percent_BE.Controllers
         {
             try
             {
-                foreach (var item in dto.DetailImportInvoice)
+                var updateIngredientDtoList = dto.DetailImportInvoice.Select(e => e.ToUpdateIngredientDto()).ToList();
+                var message = await _serviceManagement.IngredientService.updateList(updateIngredientDtoList);
+                if (message != null)
                 {
-                    var updateIngredientDto = item.ToUpdateIngredientDto(); 
-                    var message= await _serviceManagement.IngredientService.update(updateIngredientDto);
-                    if (message != null)
-                    {
-                        return BadRequest(message);
-                    }
+                    return BadRequest(message);
                 }
                 await _serviceManagement.ImportInvoiceService.Create(dto);
                 return Ok();
