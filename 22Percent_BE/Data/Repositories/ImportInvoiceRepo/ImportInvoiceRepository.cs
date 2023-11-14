@@ -1,4 +1,5 @@
 ﻿using _22Percent_BE.Data.Entities.Invoices.SubInvoices;
+using Microsoft.EntityFrameworkCore;
 
 namespace _22Percent_BE.Data.Repositories.ImportInvoiceRepo
 {
@@ -15,6 +16,19 @@ namespace _22Percent_BE.Data.Repositories.ImportInvoiceRepo
         {
             _context.ImportInvoices.Add(create);    
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<string?> Delete(string id)
+        {
+            var importinvoice = await _context.ImportInvoices.SingleOrDefaultAsync(e=> e.Id==id);
+            if(importinvoice!=null)
+            {
+                _context.ImportInvoices.Remove(importinvoice);
+                await _context.SaveChangesAsync();
+                return null;
+            }
+            return Message.ImportInvoiceNotExist; 
+            
         }
     }
 }

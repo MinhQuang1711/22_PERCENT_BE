@@ -17,5 +17,10 @@ namespace _22Percent_BE.Sevices.ImportInvoices
             var inportInvoice= dto.ToImportInvoice();
             await _repositoryManagement.ImportInvoiceRepository.Create(inportInvoice);
         }
+
+        public async Task<string?> Delete(string id)
+        {
+            return await _repositoryManagement.ImportInvoiceRepository.Delete(id);
+        }
     }
 }
