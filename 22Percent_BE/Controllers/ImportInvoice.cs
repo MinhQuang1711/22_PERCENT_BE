@@ -33,6 +33,21 @@ namespace _22Percent_BE.Controllers
             }
         }
 
+        [HttpPost("get-by-filter")]
+        public async Task<IActionResult> GetByFilter(SearchImportInvoiceDto search)
+        {
+            try
+            {
+
+                var dtos = await _serviceManagement.ImportInvoiceService.GetByFilter(search);
+                return Ok(dtos);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
         [HttpPost("get-by-id")]
         public async Task<IActionResult> GetById(BaseModel baseModel)
         {

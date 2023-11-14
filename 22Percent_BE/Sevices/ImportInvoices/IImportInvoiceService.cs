@@ -6,8 +6,13 @@ namespace _22Percent_BE.Sevices.ImportInvoices
     {
        
         public Task<string?> Delete(string id);
+
         public Task<List<GetImportInvoiceDto>> GetAll();
+
         public Task Create(CreateImportInvoiceDto dto);
+
         public Task<GetImportInvoiceDto?> GetById(string id);
+
+        public Task<List<GetImportInvoiceDto>> GetByFilter(SearchImportInvoiceDto dto);
     }
 }

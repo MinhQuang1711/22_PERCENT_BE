@@ -1,4 +1,5 @@
-﻿using _22Percent_BE.Data.Entities.Invoices.SubInvoices;
+﻿using _22Percent_BE.Data.DTOs.ImportInvoices;
+using _22Percent_BE.Data.Entities.Invoices.SubInvoices;
 using Microsoft.EntityFrameworkCore;
 
 namespace _22Percent_BE.Data.Repositories.ImportInvoiceRepo
@@ -37,6 +38,28 @@ namespace _22Percent_BE.Data.Repositories.ImportInvoiceRepo
                 .Include(e=> e.DetailImportInvoices)
                     .ThenInclude(e=> e.Ingredient)
                 .ToListAsync();
+        }
+
+        public async Task<List<ImportInvoices>> GetByFilter(SearchImportInvoiceDto dto)
+        {
+            var defaulTypeSearch = StringComparison.OrdinalIgnoreCase;
+            var filter = _context.ImportInvoices.AsQueryable();
+            if (dto.Price != null)
+            {
+                filter = filter.Where(e=> e.Total== dto.Price);
+            }
+            if (dto.InvoiceId != null)
+            {
+                filter = filter.Where(e => e.Id.Contains(dto.InvoiceId, defaulTypeSearch)); 
+            }
+            if(dto.FromTime!=null && dto.ToTime != null)
+            {
+                filter = filter.Where(e=> (e.CreateDate >= dto.FromTime) && (e.CreateDate <= dto.ToTime));
+            }
+            return await filter
+                    .Include(e=> e.DetailImportInvoices)
+                        .ThenInclude(e=> e.Ingredient)
+                    .ToListAsync();
         }
 
         public async Task<ImportInvoices?> GetById(string id)
