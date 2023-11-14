@@ -33,6 +33,19 @@ namespace _22Percent_BE.Controllers
             }
         }
 
+        [HttpPost("get-by-id")]
+        public async Task<IActionResult> GetById(BaseModel baseModel)
+        {
+            try
+            {
+                var dto = await _serviceManagement.ImportInvoiceService.GetById(baseModel.Id);
+                return Ok(dto);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
 
         /*
             * Thực hiện update ingredient sau khi thành công sẽ thêm mới ImportInvoice

@@ -38,5 +38,14 @@ namespace _22Percent_BE.Data.Repositories.ImportInvoiceRepo
                     .ThenInclude(e=> e.Ingredient)
                 .ToListAsync();
         }
+
+        public async Task<ImportInvoices?> GetById(string id)
+        {
+            return await _context.ImportInvoices
+                .Include(e => e.DetailImportInvoices)
+                    .ThenInclude(e => e.Ingredient)
+                .SingleOrDefaultAsync(e=> e.Id==id);
+                   
+        }
     }
 }

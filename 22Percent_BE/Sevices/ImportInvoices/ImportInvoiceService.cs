@@ -28,5 +28,11 @@ namespace _22Percent_BE.Sevices.ImportInvoices
             var entities= await _repositoryManagement.ImportInvoiceRepository.GetAll();
             return entities.Select(e=> e.ToGetImportInvoiceDto()).ToList();
         }
+
+        public async Task<GetImportInvoiceDto?> GetById(string id)
+        {
+            var dto= await _repositoryManagement.ImportInvoiceRepository.GetById(id);
+            return dto?.ToGetImportInvoiceDto();
+        }
     }
 }
