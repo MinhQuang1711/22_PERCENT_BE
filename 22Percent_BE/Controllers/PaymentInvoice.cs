@@ -30,6 +30,19 @@ namespace _22Percent_BE.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+        [HttpPost("get-by-filter")]
+        public async Task<IActionResult> GetByFilter(SearchPaymentInvoiceDto dto)
+        {
+            try
+            {
+               var entities= await _serviceManagement.PaymentInvoiceService.GetByFilter(dto);
+                return Ok(entities);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
 
         [HttpPost("create")]
         public async Task<IActionResult> Create(CreatePaymentInvoiceDto dto)

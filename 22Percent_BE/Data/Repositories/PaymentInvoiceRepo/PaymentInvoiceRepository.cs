@@ -1,4 +1,5 @@
-﻿using _22Percent_BE.Data.Entities.Invoices.SubInvoices;
+﻿using _22Percent_BE.Data.DTOs.PaymentInvoices;
+using _22Percent_BE.Data.Entities.Invoices.SubInvoices;
 using Microsoft.EntityFrameworkCore;
 
 namespace _22Percent_BE.Data.Repositories.PaymentInvoiceRepo
@@ -33,6 +34,21 @@ namespace _22Percent_BE.Data.Repositories.PaymentInvoiceRepo
         public async Task<List<PaymentInvoices>> GetAll()
         {
             return await _context.PaymentInvoices.ToListAsync();
+        }
+
+        public async Task<List<PaymentInvoices>> GetByFilter(SearchPaymentInvoiceDto dto)
+        {
+            var defaulTypeSearch = StringComparison.OrdinalIgnoreCase;
+            var filter = _context.PaymentInvoices.AsQueryable();
+            if (dto.InvoiceId != null)
+            {
+                filter = filter.Where(e => e.Id.Contains(dto.InvoiceId, defaulTypeSearch));
+            }
+            if(dto.FromTime!=null && dto.ToTime != null)
+            {
+                filter = filter.Where(e => (e.CreateDate >= dto.FromTime) && (e.CreateDate <= dto.ToTime)); 
+            }
+            return await filter.ToListAsync();
         }
     }
 }
