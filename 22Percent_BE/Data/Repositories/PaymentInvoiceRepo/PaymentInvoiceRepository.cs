@@ -12,6 +12,12 @@ namespace _22Percent_BE.Data.Repositories.PaymentInvoiceRepo
             _context=context;
         }
 
+        public async Task Create(PaymentInvoices paymentInvoices)
+        {
+            _context.PaymentInvoices.Add(paymentInvoices);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<List<PaymentInvoices>> GetAll()
         {
             return await _context.PaymentInvoices.ToListAsync();

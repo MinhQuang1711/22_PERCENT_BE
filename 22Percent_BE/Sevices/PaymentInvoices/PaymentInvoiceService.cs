@@ -1,4 +1,5 @@
-﻿using _22Percent_BE.Data.Repositories;
+﻿using _22Percent_BE.Data.DTOs.PaymentInvoices;
+using _22Percent_BE.Data.Repositories;
 
 namespace _22Percent_BE.Sevices.PaymentInvoices
 {
@@ -9,6 +10,11 @@ namespace _22Percent_BE.Sevices.PaymentInvoices
         public PaymentInvoiceService(IRepositoryManagement repositoryManagement) 
         {
             _repositoryManagement = repositoryManagement;
+        }
+
+        public async Task Create(CreatePaymentInvoiceDto dto)
+        {
+            await _repositoryManagement.PaymentInvoiceRepository.Create(dto.ToPaymentInvoice());
         }
 
         public async Task<List<Data.Entities.Invoices.SubInvoices.PaymentInvoices>> GetAll()
