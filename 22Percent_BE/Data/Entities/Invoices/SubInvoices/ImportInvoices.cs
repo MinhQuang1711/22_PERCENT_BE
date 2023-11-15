@@ -2,7 +2,7 @@
 {
     public class ImportInvoices : BaseInvoices
     {
-        public ICollection<DetailImportInvoice> detailImportInvoices {  get; set; }
+        public ICollection<DetailImportInvoice> DetailImportInvoices {  get; set; }
 
         public ImportInvoices() { }
     }

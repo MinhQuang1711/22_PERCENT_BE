@@ -2,7 +2,7 @@
 {
     public class PaymentInvoices : BaseInvoices
     {
-        public string descriptions { get; set; }
+        public string Descriptions { get; set; }
 
         public PaymentInvoices() { }
     }

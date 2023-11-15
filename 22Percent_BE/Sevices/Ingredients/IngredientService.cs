@@ -47,5 +47,10 @@ namespace _22Percent_BE.Sevices.Ingredients
             }
             return null;
         }
+
+        public async Task<string?> updateList(List<UpdateIngredientDto> dtoList)
+        {
+            return await _managementRepository.IngredientRepository.UpdateList(dtoList);
+        }
     }
 }

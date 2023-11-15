@@ -13,6 +13,8 @@ namespace _22Percent_BE.Data.Repositories.IngredientRepo
         public Task<List<Ingredient>> search(SearchIngredientDto search);
         public Task<bool> update(string id, UpdateIngredientDto ingredient);
 
+        public Task<string?> UpdateList(List<UpdateIngredientDto> ingredientDtos);
+
 
     }
 }

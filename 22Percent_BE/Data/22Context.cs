@@ -72,15 +72,15 @@ namespace _22Percent_BE.Data
                 Config relationship many to many for SaleInvoice and Product using DtailSaleInvoice    
             */
             modelBuilder.Entity<DetailSaleInvoice>()
-                .HasOne(e=> e.product)
+                .HasOne(e=> e.Product)
                 .WithMany(e=> e.DetailSaleInvoices)
-                .HasForeignKey(e=> e.productId)
+                .HasForeignKey(e=> e.ProductId)
                 .IsRequired(); 
 
             modelBuilder.Entity<DetailSaleInvoice>()
-                .HasOne(e=> e.saleInvoices)
-                .WithMany(e=> e.detailSaleInvoices)
-                .HasForeignKey(e=> e.saleInvoiceId)
+                .HasOne(e=> e.SaleInvoices)
+                .WithMany(e=> e.DetailSaleInvoices)
+                .HasForeignKey(e=> e.SaleInvoiceId)
                 .IsRequired();
 
 
@@ -89,15 +89,15 @@ namespace _22Percent_BE.Data
             */
 
             modelBuilder.Entity<DetailImportInvoice>()
-                .HasOne(e=> e.importInvoices)
-                .WithMany(e=> e.detailImportInvoices)
-                .HasForeignKey(e=> e.importInvoiceId)
+                .HasOne(e=> e.ImportInvoices)
+                .WithMany(e=> e.DetailImportInvoices)
+                .HasForeignKey(e=> e.ImportInvoiceId)
                 .IsRequired();
 
             modelBuilder.Entity<DetailImportInvoice>()
-                .HasOne(e => e.ingredient)
+                .HasOne(e => e.Ingredient)
                 .WithMany(e => e.DetailImportInvoices)
-                .HasForeignKey(e => e.ingredientId)
+                .HasForeignKey(e => e.IngredientId)
                 .IsRequired();
         }
 
