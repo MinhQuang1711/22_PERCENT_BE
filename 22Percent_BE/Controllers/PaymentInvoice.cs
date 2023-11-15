@@ -1,4 +1,5 @@
 ﻿using _22Percent_BE.Data.DTOs.PaymentInvoices;
+using _22Percent_BE.Data.Entities;
 using _22Percent_BE.Sevices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -39,6 +40,24 @@ namespace _22Percent_BE.Controllers
                 return Ok();
             }
             catch (Exception ex) 
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpDelete("delete")]
+        public async Task<IActionResult> Delete(BaseModel model)
+        {
+            try
+            {
+                var message= await _serviceManagement.PaymentInvoiceService.Delete(model.Id);
+                if (message != null)
+                {
+                    return BadRequest(message);
+                }
+                return Ok();
+            }
+            catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }

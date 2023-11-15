@@ -18,6 +18,18 @@ namespace _22Percent_BE.Data.Repositories.PaymentInvoiceRepo
             await _context.SaveChangesAsync();
         }
 
+        public async Task<string?> Delete(string id)
+        {
+            var entity = await  _context.PaymentInvoices.SingleOrDefaultAsync(e=> e.Id==id);
+            if (entity != null)
+            {
+                _context.PaymentInvoices.Remove(entity);
+                await _context.SaveChangesAsync();
+                return null;
+            }
+            return Message.PaymentInvoiceNotExist;
+        }
+
         public async Task<List<PaymentInvoices>> GetAll()
         {
             return await _context.PaymentInvoices.ToListAsync();

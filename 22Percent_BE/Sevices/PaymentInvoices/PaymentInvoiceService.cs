@@ -17,6 +17,11 @@ namespace _22Percent_BE.Sevices.PaymentInvoices
             await _repositoryManagement.PaymentInvoiceRepository.Create(dto.ToPaymentInvoice());
         }
 
+        public async Task<string?> Delete(string id)
+        {
+            return await _repositoryManagement.PaymentInvoiceRepository.Delete(id);
+        }
+
         public async Task<List<Data.Entities.Invoices.SubInvoices.PaymentInvoices>> GetAll()
         {
            return await _repositoryManagement.PaymentInvoiceRepository.GetAll();

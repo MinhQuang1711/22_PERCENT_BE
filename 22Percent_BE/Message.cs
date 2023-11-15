@@ -8,6 +8,7 @@
         public const string SaleInvoiceNotExist = "Hóa đơn bán không tồn tại";
         public const string ImportInvoiceNotExist = "Hóa đơn nhập không tồn tại";
         public const string PaymentTypeNotExist = "Loại thanh toán không tồn tại";
+        public const string PaymentInvoiceNotExist = "Hóa đươn xuất không tồn tại";
         public const string SelectPriceRange = "Vui lòng chọn khoảng giá";
         public const string RangPriceCantTheSame = "Giá bắt đầu và giá kết thúc không được bằng nhau";
 
