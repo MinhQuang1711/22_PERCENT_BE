@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _22Percent_BE.Data;
 
@@ -10,9 +11,10 @@ using _22Percent_BE.Data;
 namespace _22Percent_BE.Migrations
 {
     [DbContext(typeof(_22Context))]
-    partial class _22ContextModelSnapshot : ModelSnapshot
+    [Migration("20231116154240_deleteuser")]
+    partial class deleteuser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -218,24 +220,6 @@ namespace _22Percent_BE.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("_22Percent_BE.Data.Entities.User", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<string>("CreateUser")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.DetailImportInvoice", b =>

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _22Percent_BE.Data;
 
@@ -10,9 +11,10 @@ using _22Percent_BE.Data;
 namespace _22Percent_BE.Migrations
 {
     [DbContext(typeof(_22Context))]
-    partial class _22ContextModelSnapshot : ModelSnapshot
+    [Migration("20231116154710_createuser")]
+    partial class createuser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

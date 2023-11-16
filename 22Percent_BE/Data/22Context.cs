@@ -8,7 +8,6 @@ namespace _22Percent_BE.Data
     {
         public _22Context(DbContextOptions options) : base(options){ }
 
-
         public DbSet<User> Users { get; set; }  
         public DbSet<Product> Products { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
@@ -39,7 +38,7 @@ namespace _22Percent_BE.Data
 
             // Config primary key
 
-            modelBuilder.Entity<User>().HasKey(e=> e.Id);
+            modelBuilder.Entity<User>().HasKey(e => e.Id);
             modelBuilder.Entity<Product>().HasKey(e=> e.Id);
             modelBuilder.Entity<Ingredient>().HasKey(e=> e.Id);
             modelBuilder.Entity<SaleInvoices>().HasKey(e => e.Id);
