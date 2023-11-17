@@ -111,6 +111,10 @@ namespace _22Percent_BE.Migrations
                     b.Property<double>("Cost")
                         .HasColumnType("double");
 
+                    b.Property<string>("CreateUser")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
                     b.Property<double>("ImportPrice")
                         .HasColumnType("double");
 
@@ -129,6 +133,8 @@ namespace _22Percent_BE.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreateUser");
+
                     b.ToTable("Ingredients");
                 });
 
@@ -140,10 +146,16 @@ namespace _22Percent_BE.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("CreateUser")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
                     b.Property<double>("Total")
                         .HasColumnType("double");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreateUser");
 
                     b.ToTable("ImportInvoices");
                 });
@@ -156,6 +168,10 @@ namespace _22Percent_BE.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("CreateUser")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
                     b.Property<string>("Descriptions")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -164,6 +180,8 @@ namespace _22Percent_BE.Migrations
                         .HasColumnType("double");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreateUser");
 
                     b.ToTable("PaymentInvoices");
                 });
@@ -175,6 +193,10 @@ namespace _22Percent_BE.Migrations
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<string>("CreateUser")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
 
                     b.Property<double>("Discount")
                         .HasColumnType("double");
@@ -190,6 +212,8 @@ namespace _22Percent_BE.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreateUser");
+
                     b.ToTable("SaleInvoices");
                 });
 
@@ -203,7 +227,7 @@ namespace _22Percent_BE.Migrations
 
                     b.Property<string>("CreateUser")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -216,6 +240,8 @@ namespace _22Percent_BE.Migrations
                         .HasColumnType("double");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreateUser");
 
                     b.ToTable("Products");
                 });
@@ -233,7 +259,13 @@ namespace _22Percent_BE.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Users");
                 });
@@ -297,6 +329,72 @@ namespace _22Percent_BE.Migrations
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.Ingredient", b =>
                 {
+                    b.HasOne("_22Percent_BE.Data.Entities.User", "User")
+                        .WithMany("Ingredients")
+                        .HasForeignKey("CreateUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("_22Percent_BE.Data.Entities.Invoices.SubInvoices.ImportInvoices", b =>
+                {
+                    b.HasOne("_22Percent_BE.Data.Entities.User", "User")
+                        .WithMany("ImportInvoices")
+                        .HasForeignKey("CreateUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("_22Percent_BE.Data.Entities.Invoices.SubInvoices.PaymentInvoices", b =>
+                {
+                    b.HasOne("_22Percent_BE.Data.Entities.User", "User")
+                        .WithMany("PaymentInvoices")
+                        .HasForeignKey("CreateUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("_22Percent_BE.Data.Entities.Invoices.SubInvoices.SaleInvoices", b =>
+                {
+                    b.HasOne("_22Percent_BE.Data.Entities.User", "User")
+                        .WithMany("SaleInvoices")
+                        .HasForeignKey("CreateUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("_22Percent_BE.Data.Entities.Product", b =>
+                {
+                    b.HasOne("_22Percent_BE.Data.Entities.User", "User")
+                        .WithMany("Products")
+                        .HasForeignKey("CreateUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("_22Percent_BE.Data.Entities.User", b =>
+                {
+                    b.HasOne("_22Percent_BE.Data.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("_22Percent_BE.Data.Entities.Ingredient", b =>
+                {
                     b.Navigation("DetailImportInvoices");
 
                     b.Navigation("DetailProducts");
@@ -317,6 +415,19 @@ namespace _22Percent_BE.Migrations
                     b.Navigation("DetailProducts");
 
                     b.Navigation("DetailSaleInvoices");
+                });
+
+            modelBuilder.Entity("_22Percent_BE.Data.Entities.User", b =>
+                {
+                    b.Navigation("ImportInvoices");
+
+                    b.Navigation("Ingredients");
+
+                    b.Navigation("PaymentInvoices");
+
+                    b.Navigation("Products");
+
+                    b.Navigation("SaleInvoices");
                 });
 #pragma warning restore 612, 618
         }

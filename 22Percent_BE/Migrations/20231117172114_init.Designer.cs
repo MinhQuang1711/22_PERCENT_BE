@@ -11,8 +11,8 @@ using _22Percent_BE.Data;
 namespace _22Percent_BE.Migrations
 {
     [DbContext(typeof(_22Context))]
-    [Migration("20231116154710_createuser")]
-    partial class createuser
+    [Migration("20231117172114_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -205,7 +205,7 @@ namespace _22Percent_BE.Migrations
 
                     b.Property<string>("CreateUser")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -218,6 +218,8 @@ namespace _22Percent_BE.Migrations
                         .HasColumnType("double");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreateUser");
 
                     b.ToTable("Products");
                 });
@@ -297,6 +299,17 @@ namespace _22Percent_BE.Migrations
                     b.Navigation("SaleInvoices");
                 });
 
+            modelBuilder.Entity("_22Percent_BE.Data.Entities.Product", b =>
+                {
+                    b.HasOne("_22Percent_BE.Data.Entities.User", "User")
+                        .WithMany("Products")
+                        .HasForeignKey("CreateUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("_22Percent_BE.Data.Entities.Ingredient", b =>
                 {
                     b.Navigation("DetailImportInvoices");
@@ -319,6 +332,11 @@ namespace _22Percent_BE.Migrations
                     b.Navigation("DetailProducts");
 
                     b.Navigation("DetailSaleInvoices");
+                });
+
+            modelBuilder.Entity("_22Percent_BE.Data.Entities.User", b =>
+                {
+                    b.Navigation("Products");
                 });
 #pragma warning restore 612, 618
         }

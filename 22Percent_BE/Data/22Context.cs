@@ -25,7 +25,7 @@ namespace _22Percent_BE.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            const string connectionString = "Server=localhost;User ID=root;Password=Tlua35016;Database=22Percent";
+            const string connectionString = "Server=localhost;User ID=root;Password=Tlua35016;Database=23Percent";
             optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
         }
 
@@ -98,6 +98,33 @@ namespace _22Percent_BE.Data
                 .WithMany(e => e.DetailImportInvoices)
                 .HasForeignKey(e => e.IngredientId)
                 .IsRequired();
+
+            modelBuilder.Entity<User>()
+                .HasMany(e=> e.Products)
+                .WithOne(e=> e.User)
+                .HasForeignKey(e=> e.CreateUser)
+                .IsRequired();
+            modelBuilder.Entity<User>()
+              .HasMany(e => e.Ingredients)
+              .WithOne(e => e.User)
+              .HasForeignKey(e => e.CreateUser)
+              .IsRequired();
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.SaleInvoices)
+                .WithOne(e => e.User)
+                .HasForeignKey(e => e.CreateUser)
+                .IsRequired(); 
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.ImportInvoices)
+                .WithOne(e => e.User)
+                .HasForeignKey(e => e.CreateUser)
+                .IsRequired();
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.PaymentInvoices)
+                .WithOne(e => e.User)
+                .HasForeignKey(e => e.CreateUser)
+                .IsRequired();
+
         }
 
 

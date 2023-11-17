@@ -1,6 +1,6 @@
 ﻿namespace _22Percent_BE.Data.Entities
 {
-    public class Ingredient: BaseModel
+    public class Ingredient: RelationshipWithUser
     {
         public string Name { get; set; }
         public double Loss { get; set; }

@@ -24,7 +24,6 @@ namespace _22Percent_BE.Data.DTOs.Products
                 Id = productId,
                 Name = dto.Name,
                 Price = dto.Price,
-                CreateUser = dto.CreateUser,
                 Cost = GetCost(detailProducts),
                 DetailProducts = detailProducts,
                 Profit = dto.Price - GetCost(detailProducts),
