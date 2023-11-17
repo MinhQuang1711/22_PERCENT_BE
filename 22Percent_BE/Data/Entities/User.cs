@@ -2,7 +2,7 @@
 
 namespace _22Percent_BE.Data.Entities
 {
-    public class User:RelationshipWithUser
+    public class User:BaseModel
     {
         public string Password { get; set; }
         public ICollection<Product> Products { get; set; }
