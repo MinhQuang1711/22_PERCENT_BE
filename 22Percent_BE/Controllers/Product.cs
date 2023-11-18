@@ -1,6 +1,7 @@
 ﻿using _22Percent_BE.Data.DTOs.Products;
 using _22Percent_BE.Data.Entities;
 using _22Percent_BE.Sevices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -66,6 +67,7 @@ namespace _22Percent_BE.Controllers
         }
 
         [HttpPost("create")]
+        [Authorize]
         public async Task<IActionResult> Create(CreateProductDto dto)
         {
             var productId=Guid.NewGuid().ToString();

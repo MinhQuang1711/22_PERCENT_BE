@@ -65,7 +65,7 @@ builder.Services.AddAuthentication(otps =>
         ValidateIssuerSigningKey = true,
         ValidIssuer = builder.Configuration["Issuer"],
         ValidAudience = builder.Configuration["Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["SecretKey"])),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(builder.Configuration["SecretKey"])),
     };
 });
 
@@ -83,6 +83,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

@@ -2,6 +2,8 @@
 {
      public class Message
     {
+
+        public const string UserExisted = "Tên người dùng đã tồn tại";
         public const string IngredientNotExist= "Nguyên liệu không tồn tại";
         public const string ProductNotExist = "Sản phẩm không tồn tại";
         public const string DetailProductNotExist = "Chi tiết sản phẩm không tồn tại";
