@@ -5,7 +5,6 @@ using _22Percent_BE.Sevices.PaymentInvoices;
 using _22Percent_BE.Sevices.Products;
 using _22Percent_BE.Sevices.SaleInvoices;
 using _22Percent_BE.Sevices.Tokens;
-using AutoMapper;
 
 namespace _22Percent_BE.Sevices
 {
@@ -17,8 +16,9 @@ namespace _22Percent_BE.Sevices
         private readonly Lazy<ISaleInvoiceService> _saleInvoiceService;
         private readonly Lazy<IImportInvoiceService> _importInvoiceService;
         private readonly Lazy<IPaymentInvoiceService> _paymentInvoiceService;
+        private readonly Lazy<Authen.IAuthenticationService> _authenticationService;
 
-        public ServiceManagement(IRepositoryManagement repositoryManagement, IMapper mapper,IConfiguration configuration) 
+        public ServiceManagement(IRepositoryManagement repositoryManagement,IConfiguration configuration, ITokenService tokenService) 
         {
             _tokenService = new Lazy<ITokenService>(() => new TokenService(configuration));
 
@@ -31,7 +31,11 @@ namespace _22Percent_BE.Sevices
             _importInvoiceService = new Lazy<IImportInvoiceService>(() => new ImportInvoiceService(repositoryManagement));
 
             _paymentInvoiceService = new Lazy<IPaymentInvoiceService>(() => new PaymentInvoiceService(repositoryManagement));
+
+            _authenticationService = new Lazy<Authen.IAuthenticationService>(() => new Authen.AuthenticationService(repositoryManagement,tokenService));
         }
+
+        public Authen.IAuthenticationService AuthenticationService => _authenticationService.Value;
 
         public IPaymentInvoiceService PaymentInvoiceService => _paymentInvoiceService.Value;
 
@@ -44,5 +48,6 @@ namespace _22Percent_BE.Sevices
         public IProductService ProductService => _prductService.Value;
 
         public ITokenService TokenService => _tokenService.Value;
+
     }
 }

@@ -3,6 +3,7 @@ using _22Percent_BE.Data.Repositories;
 using _22Percent_BE.Data.Repositories.IngredientRepo;
 using _22Percent_BE.Helpers.Mappers;
 using _22Percent_BE.Sevices;
+using _22Percent_BE.Sevices.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -71,7 +72,7 @@ builder.Services.AddAuthentication(otps =>
 
 
 //Add scoped
-builder.Services.AddScoped<IIngredientRepository, IngredientRepository>();
+builder.Services.AddScoped<ITokenService, TokenService>();
 
 var app = builder.Build();
 

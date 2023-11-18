@@ -3,12 +3,14 @@ using _22Percent_BE.Data.Repositories.IngredientRepo;
 using _22Percent_BE.Data.Repositories.PaymentInvoiceRepo;
 using _22Percent_BE.Data.Repositories.ProductRepo;
 using _22Percent_BE.Data.Repositories.SaleInvoiceRepo;
+using _22Percent_BE.Data.Repositories.UserRepo;
 using AutoMapper;
 
 namespace _22Percent_BE.Data.Repositories
 {
     public class RepositoryManagement : IRepositoryManagement
     {
+        private readonly Lazy<IUserRepository> _lazyUserRepository;
         private readonly Lazy<IProductRepository> _lazyProductRepository;
         private readonly Lazy<IIngredientRepository> _lazyIngredientRepository;
         private readonly Lazy<ISaleInvoiceRepository> _lazySaleInvoiceRepository;
@@ -17,6 +19,9 @@ namespace _22Percent_BE.Data.Repositories
 
         public RepositoryManagement(_22Context context,IMapper mapper) 
         {
+
+            _lazyUserRepository = new Lazy<IUserRepository>(() => new UserRepository(context));
+
             _lazyProductRepository = new Lazy<IProductRepository>(() => new ProductRepository(context));
 
             _lazySaleInvoiceRepository = new Lazy<ISaleInvoiceRepository>(() => new SaleInvoiceRepository(context));
@@ -28,6 +33,8 @@ namespace _22Percent_BE.Data.Repositories
             _lazyPaymentInvoiceRepository = new Lazy<IPaymentInvoiceRepository>(() => new PaymentInvoiceRepository(context));
 
         }
+
+        public IUserRepository UserRepository => _lazyUserRepository.Value;
 
         public IProductRepository ProductRepository => _lazyProductRepository.Value;
 
