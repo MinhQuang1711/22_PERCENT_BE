@@ -26,6 +26,7 @@ namespace _22Percent_BE.Data.Repositories.IngredientRepo
                 var ingredient= _mapper.Map<Ingredient>(ingredientDto);
                 ingredient.RealWeight = caculatorRealWeight(ingredient.Loss, ingredient.NetWeight);
                 ingredient.Cost = (ingredient.ImportPrice / ingredient.RealWeight);
+                ingredient.CreateUser = "QuangPM";
                 await _context.Ingredients.AddAsync(ingredient);
                 await _context.SaveChangesAsync();
                 return true;

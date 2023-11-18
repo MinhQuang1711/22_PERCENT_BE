@@ -86,3 +86,10 @@ C:\Users\Dell\PersionalProject\22_PERCENT_BE\22Percent_BE\obj\Debug\net6.0\refin
 C:\Users\Dell\PersionalProject\22_PERCENT_BE\22Percent_BE\obj\Debug\net6.0\22Percent_BE.pdb
 C:\Users\Dell\PersionalProject\22_PERCENT_BE\22Percent_BE\obj\Debug\net6.0\22Percent_BE.genruntimeconfig.cache
 C:\Users\Dell\PersionalProject\22_PERCENT_BE\22Percent_BE\obj\Debug\net6.0\ref\22Percent_BE.dll
+C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\net6.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\net6.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
