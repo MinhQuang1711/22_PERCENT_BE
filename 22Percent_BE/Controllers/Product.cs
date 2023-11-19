@@ -17,7 +17,6 @@ namespace _22Percent_BE.Controllers
         {
             _serviceManagement = serviceManagement;
         }
-
         [HttpGet("get-all")]
         public async Task<IActionResult> GetAll()
         {
@@ -67,7 +66,6 @@ namespace _22Percent_BE.Controllers
         }
 
         [HttpPost("create")]
-        [Authorize]
         public async Task<IActionResult> Create(CreateProductDto dto)
         {
             var productId=Guid.NewGuid().ToString();

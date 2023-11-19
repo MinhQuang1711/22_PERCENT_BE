@@ -8,8 +8,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -47,16 +50,35 @@ builder.Services.AddDbContext<_22Context>
 
 builder.Services.AddAutoMapper(typeof(Mapper));
 
+builder.Services.AddSwaggerGen(otps=>
+{
+    var securityScheme = new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Description = "Enter JWT Bearer token",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        Reference = new OpenApiReference
+        {
+            Type = ReferenceType.SecurityScheme,
+            Id = "Bearer"
+        },
+    };
+    otps.AddSecurityDefinition("Bearer", securityScheme);
+    otps.AddSecurityRequirement(new OpenApiSecurityRequirement
+        {
+            { securityScheme, new string[] { } }
+        });
+});
+
 builder.Services.AddAuthentication(otps =>
 {
     otps.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     otps.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 }).AddJwtBearer(otps =>
 {
-
-//      "SecretKey": "your_secret_key_here",
-//      "Issuer": "your_issuer_here",
-//      "Audience": "your_audience_here",
     otps.SaveToken = true;
     otps.TokenValidationParameters = new TokenValidationParameters
     {

@@ -93,3 +93,7 @@ C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\
 C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\net6.0\Scrutor.dll
+C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.dll
+C:\Users\ASUS\PersonalProject\22_PERCENT_BE\22Percent_BE\22Percent_BE\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.Abstractions.dll
