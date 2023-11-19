@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace _22Percent_BE.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class Product : ControllerBase
@@ -17,6 +18,7 @@ namespace _22Percent_BE.Controllers
         {
             _serviceManagement = serviceManagement;
         }
+        
         [HttpGet("get-all")]
         public async Task<IActionResult> GetAll()
         {

@@ -1,6 +1,7 @@
 using _22Percent_BE.Data;
 using _22Percent_BE.Data.Repositories;
 using _22Percent_BE.Data.Repositories.IngredientRepo;
+using _22Percent_BE.Helpers.Jwt;
 using _22Percent_BE.Helpers.Mappers;
 using _22Percent_BE.Sevices;
 using _22Percent_BE.Sevices.Tokens;
@@ -47,7 +48,6 @@ builder.Services.AddDbContext<_22Context>
             }
         )
     );
-
 builder.Services.AddAutoMapper(typeof(Mapper));
 
 builder.Services.AddSwaggerGen(otps=>
@@ -104,6 +104,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<JwtMiddlerware>();
 
 app.UseHttpsRedirection();
 
