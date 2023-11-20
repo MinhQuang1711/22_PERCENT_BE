@@ -4,6 +4,7 @@ using _22Percent_BE.Data.Enums;
 using _22Percent_BE.Sevices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace _22Percent_BE.Controllers
 {
@@ -12,6 +13,7 @@ namespace _22Percent_BE.Controllers
     public class SaleInvoice : ControllerBase
     {
         private readonly IServiceManagement _serviceManagement;
+        private string currentUser => User.FindFirstValue(ClaimTypes.Name);
 
         public SaleInvoice(IServiceManagement serviceManagement) 
         {
@@ -23,7 +25,7 @@ namespace _22Percent_BE.Controllers
         {
             try
             {
-                var dtos = await _serviceManagement.SaleInvoiceService.GetAll(); 
+                var dtos = await _serviceManagement.SaleInvoiceService.GetAll(currentUser); 
                 return Ok(dtos);
             }
             catch (Exception ex) 
@@ -51,7 +53,7 @@ namespace _22Percent_BE.Controllers
         {
             try
             {
-                var dtos = await _serviceManagement.SaleInvoiceService.GetByFilter(dto);
+                var dtos = await _serviceManagement.SaleInvoiceService.GetByFilter(dto,currentUser);
                 return Ok(dtos);
             }
             catch (Exception ex)
@@ -67,7 +69,7 @@ namespace _22Percent_BE.Controllers
             {
                 if (Enum.IsDefined(typeof(PaymentType), dto.PaymentType))
                 {
-                    await _serviceManagement.SaleInvoiceService.Create(dto);
+                    await _serviceManagement.SaleInvoiceService.Create(dto, currentUser);
                     return Ok();
                 }
                 return BadRequest(Message.PaymentTypeNotExist);

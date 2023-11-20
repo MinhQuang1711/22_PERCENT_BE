@@ -13,9 +13,9 @@ namespace _22Percent_BE.Sevices.Products
             _repositoryManagement=repositoryManagement;
         }
 
-        public Task<string?> Create(CreateProductDto create, string productId)
+        public Task<string?> Create(CreateProductDto create, string currentUser)
         {
-            var product = create.ToProduct(productId);
+            var product = create.ToProduct(currentUser);
             return _repositoryManagement.ProductRepository.Create(product); 
         }
 
@@ -24,9 +24,10 @@ namespace _22Percent_BE.Sevices.Products
             return await _repositoryManagement.ProductRepository.Delete(id);
         }
 
-        public async Task<List<GetproductDto>> GetAll()
+        public async Task<List<GetproductDto>> GetAll(string currentUser)
         {
             var products= await _repositoryManagement.ProductRepository.GetAll();
+            products = products.Where(e => e.CreateUser == currentUser).ToList();
             return  products.Select(e=> e.ToGetProductDto()).ToList();
 
         }
@@ -37,9 +38,10 @@ namespace _22Percent_BE.Sevices.Products
             return product?.ToGetProductDto();
         }
 
-        public async Task<List<GetproductDto>> SearchByFilter(SearchProductDto search)
+        public async Task<List<GetproductDto>> SearchByFilter(SearchProductDto search, string currentUser)
         {
             var products = await _repositoryManagement.ProductRepository.SearchByFilter(search);
+            products = products.Where(e => e.CreateUser == currentUser).ToList();
             return products.Select(e => e.ToGetProductDto()).ToList();
         }
 

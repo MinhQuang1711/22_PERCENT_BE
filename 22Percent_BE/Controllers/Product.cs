@@ -4,6 +4,7 @@ using _22Percent_BE.Sevices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace _22Percent_BE.Controllers
 {
@@ -13,6 +14,7 @@ namespace _22Percent_BE.Controllers
     public class Product : ControllerBase
     {
         private readonly IServiceManagement _serviceManagement;
+        private string currentUser => User.FindFirstValue(ClaimTypes.Name);
 
         public Product(IServiceManagement serviceManagement)
         {
@@ -24,7 +26,7 @@ namespace _22Percent_BE.Controllers
         {
             try
             {
-                var dtos = await _serviceManagement.ProductService.GetAll();
+                var dtos = await _serviceManagement.ProductService.GetAll(currentUser);
                 return Ok(dtos);
             }
             catch (Exception ex)
@@ -43,7 +45,7 @@ namespace _22Percent_BE.Controllers
                     if(search.FromPrice == search.ToPrice)
                     return BadRequest(Message.RangPriceCantTheSame);
                 }
-                var dtos= await _serviceManagement.ProductService.SearchByFilter(search);
+                var dtos= await _serviceManagement.ProductService.SearchByFilter(search,currentUser);
                 return Ok(dtos);
             }
             catch (Exception ex)
@@ -70,8 +72,7 @@ namespace _22Percent_BE.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> Create(CreateProductDto dto)
         {
-            var productId=Guid.NewGuid().ToString();
-            var productMessage= await _serviceManagement.ProductService.Create(dto,productId);
+            var productMessage= await _serviceManagement.ProductService.Create(dto,currentUser);
             if (productMessage != null)
             {
                 return BadRequest(productMessage);

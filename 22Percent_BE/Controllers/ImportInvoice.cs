@@ -4,6 +4,7 @@ using _22Percent_BE.Data.Entities;
 using _22Percent_BE.Sevices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace _22Percent_BE.Controllers
 {
@@ -12,6 +13,7 @@ namespace _22Percent_BE.Controllers
     public class ImportInvoice : ControllerBase
     {
         private readonly IServiceManagement _serviceManagement;
+        private string currentUser => User.FindFirstValue(ClaimTypes.Name);
 
         public ImportInvoice(IServiceManagement serviceManagement)
         {
@@ -24,7 +26,7 @@ namespace _22Percent_BE.Controllers
         {
             try
             {
-                var dtos = await _serviceManagement.ImportInvoiceService.GetAll();
+                var dtos = await _serviceManagement.ImportInvoiceService.GetAll(currentUser);
                 return Ok(dtos);
             }
             catch (Exception ex)
@@ -39,7 +41,7 @@ namespace _22Percent_BE.Controllers
             try
             {
 
-                var dtos = await _serviceManagement.ImportInvoiceService.GetByFilter(search);
+                var dtos = await _serviceManagement.ImportInvoiceService.GetByFilter(search,currentUser);
                 return Ok(dtos);
             }
             catch (Exception ex)
@@ -76,7 +78,7 @@ namespace _22Percent_BE.Controllers
                 {
                     return BadRequest(message);
                 }
-                await _serviceManagement.ImportInvoiceService.Create(dto);
+                await _serviceManagement.ImportInvoiceService.Create(dto, currentUser);
                 return Ok();
             }
             catch (Exception ex)

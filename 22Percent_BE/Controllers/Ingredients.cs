@@ -1,15 +1,19 @@
 ﻿using _22Percent_BE.Data.DTOs.Ingredients;
 using _22Percent_BE.Sevices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace _22Percent_BE.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class Ingredients : ControllerBase
     {
         private readonly IServiceManagement _serviceManagement;
+        private string currentUser => User.FindFirstValue(ClaimTypes.Name);
 
         public Ingredients(IServiceManagement serviceManagement) 
         {
@@ -17,9 +21,11 @@ namespace _22Percent_BE.Controllers
         }
 
         [HttpGet("Get-All")]
-        public async Task<IActionResult> GetAl() 
+        public async Task<IActionResult> GetAll() 
         {
-            return Ok(await _serviceManagement.IngredientService.getAll());
+            var ingredients = await _serviceManagement.IngredientService.getAll();
+            ingredients = ingredients.Where(e => e.CreateUser == currentUser).ToList();
+            return Ok(ingredients);
         }
 
         [HttpPost("Create")]
@@ -29,7 +35,7 @@ namespace _22Percent_BE.Controllers
             {
                 return BadRequest("Giá nguyên liệu phải lớn hơn 0");
             }
-            var result = await _serviceManagement.IngredientService.create(create);
+            var result = await _serviceManagement.IngredientService.create(create,currentUser);
             if (result == true)
             {
                 return Ok();
@@ -41,6 +47,7 @@ namespace _22Percent_BE.Controllers
         public async Task<IActionResult> searchByFilter(SearchIngredientDto search)
         {
             var result= await _serviceManagement.IngredientService.searchByFilter(search);
+            result = result.Where(e => e.CreateUser == currentUser).ToList();
             return Ok(result);
         }
 

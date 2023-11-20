@@ -19,14 +19,14 @@ namespace _22Percent_BE.Data.Repositories.IngredientRepo
         }
 
 
-        public async Task<bool> create(CreateIngredientDto ingredientDto)
+        public async Task<bool> create(CreateIngredientDto ingredientDto,string currentUser)
         {
             try
             {
                 var ingredient= _mapper.Map<Ingredient>(ingredientDto);
                 ingredient.RealWeight = caculatorRealWeight(ingredient.Loss, ingredient.NetWeight);
                 ingredient.Cost = (ingredient.ImportPrice / ingredient.RealWeight);
-                ingredient.CreateUser = "QuangPM";
+                ingredient.CreateUser = currentUser;
                 await _context.Ingredients.AddAsync(ingredient);
                 await _context.SaveChangesAsync();
                 return true;

@@ -13,9 +13,9 @@ namespace _22Percent_BE.Sevices.Ingredients
             _managementRepository= managementRepository;
         }
 
-        public async Task<bool> create(CreateIngredientDto create)
+        public async Task<bool> create(CreateIngredientDto create, string currentUser)
         {
-            return await _managementRepository.IngredientRepository.create(create);
+            return await _managementRepository.IngredientRepository.create(create,currentUser);
         }
 
         public async Task<bool> detete(string id)

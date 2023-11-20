@@ -13,9 +13,10 @@ namespace _22Percent_BE.Sevices.SaleInvoices
             _repositoryManagement = repositoryManagement;
         }
 
-        public async Task Create(CreateSaleInvoiceDto dto)
+        public async Task Create(CreateSaleInvoiceDto dto, string currentUser)
         {
             var saleInvoice= dto.ToSaleInvoicce();
+            saleInvoice.CreateUser = currentUser;
             await _repositoryManagement.saleInvoiceRepository.Create(saleInvoice);
         }
 
@@ -25,15 +26,17 @@ namespace _22Percent_BE.Sevices.SaleInvoices
             return await _repositoryManagement.saleInvoiceRepository.Delete(id);
         }
 
-        public async Task<List<GetSaleInvoiceDto>> GetAll()
+        public async Task<List<GetSaleInvoiceDto>> GetAll(string currentUser)
         {
             var saleInvoices= await _repositoryManagement.saleInvoiceRepository.GetAll();
+            saleInvoices = saleInvoices.Where(e => e.CreateUser == currentUser).ToList();
             return saleInvoices.Select(e=> e.ToGetSaleInvoiceDto()).ToList();
         }
 
-        public async Task<List<GetSaleInvoiceDto>> GetByFilter(SearchSaleInvoiceDto dto)
+        public async Task<List<GetSaleInvoiceDto>> GetByFilter(SearchSaleInvoiceDto dto, string currentUser)
         {
             var saleiInvoice= await _repositoryManagement.saleInvoiceRepository.GetByFilter(dto);
+            saleiInvoice = saleiInvoice.Where(e => e.CreateUser == currentUser).ToList();
             return saleiInvoice.Select(e=> e.ToGetSaleInvoiceDto()).ToList();
         }
 

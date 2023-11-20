@@ -7,13 +7,13 @@ namespace _22Percent_BE.Sevices.SaleInvoices
     {
         public Task<string?> Delete(string id);
 
-        public Task Create(CreateSaleInvoiceDto dto);
-
-        public Task<List<GetSaleInvoiceDto>> GetAll();
-
         public Task<GetSaleInvoiceDto?> GetById(string id);
 
-        public Task<List<GetSaleInvoiceDto>> GetByFilter(SearchSaleInvoiceDto dto); 
+        public Task Create(CreateSaleInvoiceDto dto,string currentUser);
+
+        public Task<List<GetSaleInvoiceDto>> GetAll(string currentUser);
+
+        public Task<List<GetSaleInvoiceDto>> GetByFilter(SearchSaleInvoiceDto dto,string currentUser); 
 
     }
 }
