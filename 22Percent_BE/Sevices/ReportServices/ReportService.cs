@@ -62,6 +62,11 @@ namespace _22Percent_BE.Sevices.ReportServices
             return await _repositoryManagement.ReportRepository.Delete(id); 
         }
 
+        public async Task<List<Report>> GetByFilter(string userName, SearchReportDto dto)
+        {
+            return await _repositoryManagement.ReportRepository.GetByFilter(userName, dto.FromTime, dto.ToTime); 
+        }
+
         public Task<List<Report>> GetByUserName(string userName)
         {
             return _repositoryManagement.ReportRepository.GetByUserName(userName);

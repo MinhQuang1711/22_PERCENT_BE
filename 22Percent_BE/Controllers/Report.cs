@@ -33,6 +33,19 @@ namespace _22Percent_BE.Controllers
                 return StatusCode(500, ex.Message); 
             }
         }
+        [HttpPost("get-by-filter")]
+        public async Task<IActionResult> GetByFilter(SearchReportDto dto)
+        {
+            try
+            {
+                var reports = await _serviceManagement.ReportService.GetByFilter(currentUser, dto);
+                return Ok(reports);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
 
         [HttpPost("create")]
         public async Task<IActionResult> Create(CreateReportDto dto)

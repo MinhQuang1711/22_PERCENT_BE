@@ -7,6 +7,7 @@ namespace _22Percent_BE.Data.Repositories.ReportRepo
         public Task Create(Report report);
         public Task<string?> Delete(string id);
         public Task<List<Report>> GetByUserName(string userName);
+        public Task<List<Report>> GetByFilter(string uerName, DateTime? fromTime, DateTime? toTime);
 
     }
 }
