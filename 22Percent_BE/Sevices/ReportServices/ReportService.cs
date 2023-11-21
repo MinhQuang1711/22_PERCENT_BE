@@ -52,9 +52,14 @@ namespace _22Percent_BE.Sevices.ReportServices
                 CreateUser = currentUser,
                 FinalProfit = finalProfit,
                 MaterialCost = materialCost,
-                Id = Guid.NewGuid().ToString(),
+                Id = "BC"+DateTime.Now.ToString("yyyyMMddHHmmss"),
             };
             await _repositoryManagement.ReportRepository.Create(report); 
+        }
+
+        public async Task<string?> Delete(string id)
+        {
+            return await _repositoryManagement.ReportRepository.Delete(id); 
         }
 
         public Task<List<Report>> GetByUserName(string userName)

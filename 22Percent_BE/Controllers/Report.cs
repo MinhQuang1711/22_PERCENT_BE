@@ -1,4 +1,5 @@
 ﻿using _22Percent_BE.Data.DTOs.Report;
+using _22Percent_BE.Data.Entities;
 using _22Percent_BE.Sevices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -39,6 +40,24 @@ namespace _22Percent_BE.Controllers
             try
             {
                 await _serviceManagement.ReportService.Create(dto, currentUser);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpDelete("delete")]
+        public async Task<IActionResult> Delete(BaseModel dto)
+        {
+            try
+            {
+                var message= await _serviceManagement.ReportService.Delete(dto.Id);
+                if (message != null)
+                {
+                    return BadRequest(message); 
+                }
                 return Ok();
             }
             catch (Exception ex)

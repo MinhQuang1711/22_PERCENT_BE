@@ -18,6 +18,18 @@ namespace _22Percent_BE.Data.Repositories.ReportRepo
             await _context.SaveChangesAsync();  
         }
 
+        public async Task<string?> Delete(string id)
+        {
+            var report = await _context.Reports.SingleOrDefaultAsync(e=> e.Id==id);
+            if (report != null)
+            {
+                _context.Remove(report);
+                await _context.SaveChangesAsync();
+                return null;
+            }
+            return Message.ReportNotExist; 
+        }
+
         public async Task<List<Report>> GetByUserName(string userName)
         {
             return await _context.Reports.Where(e => e.CreateUser == userName).ToListAsync();

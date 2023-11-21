@@ -4,6 +4,7 @@
     {
         public const string LoginFaild = "Mật khẩu hoặc tên tài khoản không tồn tại";
         public const string UserExisted = "Tên người dùng đã tồn tại";
+        public const string ReportNotExist = "Mã báo cáo không tồn tại";
         public const string IngredientNotExist= "Nguyên liệu không tồn tại";
         public const string ProductNotExist = "Sản phẩm không tồn tại";
         public const string DetailProductNotExist = "Chi tiết sản phẩm không tồn tại";
