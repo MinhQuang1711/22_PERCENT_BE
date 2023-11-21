@@ -31,11 +31,11 @@ namespace _22Percent_BE.Controllers
             }
         }
         [HttpPost("get-by-filter")]
-        public async Task<IActionResult> GetByFilter(SearchPaymentInvoiceDto dto)
+        public async Task<IActionResult> GetByFilter(SearchPaymentInvoiceDto dto, string currentUser)
         {
             try
             {
-               var entities= await _serviceManagement.PaymentInvoiceService.GetByFilter(dto);
+               var entities= await _serviceManagement.PaymentInvoiceService.GetByFilter(dto, currentUser);
                 return Ok(entities);
             }
             catch (Exception ex)

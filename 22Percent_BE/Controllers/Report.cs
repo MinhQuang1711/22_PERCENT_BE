@@ -1,4 +1,5 @@
-﻿using _22Percent_BE.Sevices;
+﻿using _22Percent_BE.Data.DTOs.Report;
+using _22Percent_BE.Sevices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +8,7 @@ using System.Security.Claims;
 namespace _22Percent_BE.Controllers
 {
     [Authorize]
-    [Route("api/Report")]
+    [Route("api/report")]
     [ApiController]
     public class Report : ControllerBase
     {
@@ -29,6 +30,20 @@ namespace _22Percent_BE.Controllers
             catch (Exception ex) 
             {
                 return StatusCode(500, ex.Message); 
+            }
+        }
+
+        [HttpPost("create")]
+        public async Task<IActionResult> Create(CreateReportDto dto)
+        {
+            try
+            {
+                await _serviceManagement.ReportService.Create(dto, currentUser);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
             }
         }
     }

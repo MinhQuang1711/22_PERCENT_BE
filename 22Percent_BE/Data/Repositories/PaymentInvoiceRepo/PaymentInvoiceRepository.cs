@@ -36,7 +36,7 @@ namespace _22Percent_BE.Data.Repositories.PaymentInvoiceRepo
             return await _context.PaymentInvoices.ToListAsync();
         }
 
-        public async Task<List<PaymentInvoices>> GetByFilter(SearchPaymentInvoiceDto dto)
+        public async Task<List<PaymentInvoices>> GetByFilter(SearchPaymentInvoiceDto dto, string currentUser)
         {
             var defaulTypeSearch = StringComparison.OrdinalIgnoreCase;
             var filter = _context.PaymentInvoices.AsQueryable();
@@ -44,10 +44,15 @@ namespace _22Percent_BE.Data.Repositories.PaymentInvoiceRepo
             {
                 filter = filter.Where(e => e.Id.Contains(dto.InvoiceId, defaulTypeSearch));
             }
-            if(dto.FromTime!=null && dto.ToTime != null)
+            if(dto.FromTime!=null)
             {
-                filter = filter.Where(e => (e.CreateDate >= dto.FromTime) && (e.CreateDate <= dto.ToTime)); 
+                filter = filter.Where(e => e.CreateDate >= dto.FromTime); 
             }
+            if(dto.ToTime != null)
+            {
+                filter = filter.Where(e => e.CreateDate<=dto.ToTime);
+            }
+            filter = filter.Where(e => e.CreateUser == currentUser); 
             return await filter.ToListAsync();
         }
     }

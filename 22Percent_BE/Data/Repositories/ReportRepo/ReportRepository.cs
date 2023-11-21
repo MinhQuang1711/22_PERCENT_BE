@@ -11,6 +11,13 @@ namespace _22Percent_BE.Data.Repositories.ReportRepo
         {
             _context = context;
         }
+
+        public async Task Create(Report report)
+        {
+           _context.Reports.Add(report);
+            await _context.SaveChangesAsync();  
+        }
+
         public async Task<List<Report>> GetByUserName(string userName)
         {
             return await _context.Reports.Where(e => e.CreateUser == userName).ToListAsync();

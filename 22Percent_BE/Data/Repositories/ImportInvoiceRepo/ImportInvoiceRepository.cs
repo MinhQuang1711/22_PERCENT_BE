@@ -40,7 +40,7 @@ namespace _22Percent_BE.Data.Repositories.ImportInvoiceRepo
                 .ToListAsync();
         }
 
-        public async Task<List<ImportInvoices>> GetByFilter(SearchImportInvoiceDto dto)
+        public async Task<List<ImportInvoices>> GetByFilter(SearchImportInvoiceDto dto, string currentUser)
         {
             var defaulTypeSearch = StringComparison.OrdinalIgnoreCase;
             var filter = _context.ImportInvoices.AsQueryable();
@@ -52,13 +52,19 @@ namespace _22Percent_BE.Data.Repositories.ImportInvoiceRepo
             {
                 filter = filter.Where(e => e.Id.Contains(dto.InvoiceId, defaulTypeSearch)); 
             }
-            if(dto.FromTime!=null && dto.ToTime != null)
+            if(dto.FromTime!=null)
             {
-                filter = filter.Where(e=> (e.CreateDate >= dto.FromTime) && (e.CreateDate <= dto.ToTime));
+                filter = filter.Where(e=> e.CreateDate >= dto.FromTime);
             }
-            return await filter
+            if(dto.ToTime != null)
+            {
+                filter = filter.Where(e=> e.CreateDate <= dto.ToTime);
+            }
+            filter= filter.Where(e => e.CreateUser == currentUser); 
+
+            return await filter 
                     .Include(e=> e.DetailImportInvoices)
-                        .ThenInclude(e=> e.Ingredient)
+                    .ThenInclude(e=> e.Ingredient)
                     .ToListAsync();
         }
 

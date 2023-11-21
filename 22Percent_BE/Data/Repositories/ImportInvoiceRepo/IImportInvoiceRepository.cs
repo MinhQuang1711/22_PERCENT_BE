@@ -13,6 +13,6 @@ namespace _22Percent_BE.Data.Repositories.ImportInvoiceRepo
 
         public Task<ImportInvoices?> GetById(string id);
 
-        public Task<List<ImportInvoices>> GetByFilter(SearchImportInvoiceDto dto);
+        public Task<List<ImportInvoices>> GetByFilter(SearchImportInvoiceDto dto, string currentUser);
     }
 }

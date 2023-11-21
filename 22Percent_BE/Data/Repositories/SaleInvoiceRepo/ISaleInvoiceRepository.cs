@@ -14,7 +14,7 @@ namespace _22Percent_BE.Data.Repositories.SaleInvoiceRepo
 
         public Task Create(SaleInvoices saleInvoices);
 
-        public Task<List<SaleInvoices>> GetByFilter(SearchSaleInvoiceDto dto);
+        public Task<List<SaleInvoices>> GetByFilter(SearchSaleInvoiceDto dto, string currentUser);
         
     }
 }

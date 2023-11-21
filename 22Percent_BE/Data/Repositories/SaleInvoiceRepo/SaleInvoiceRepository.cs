@@ -40,7 +40,7 @@ namespace _22Percent_BE.Data.Repositories.SaleInvoiceRepo
             return saleInvoices;
         }
 
-        public async Task<List<SaleInvoices>> GetByFilter(SearchSaleInvoiceDto dto)
+        public async Task<List<SaleInvoices>> GetByFilter(SearchSaleInvoiceDto dto, string currentUser)
         {
             var filter = _context.SaleInvoices.AsQueryable();
             if (dto.SaleInvoiceId != null)
@@ -55,6 +55,9 @@ namespace _22Percent_BE.Data.Repositories.SaleInvoiceRepo
             {
                 filter = filter.Where(e => e.CreateDate >= dto.FromTime && e.CreateDate <= dto.EndTime);
             }
+
+            filter = filter.Where(e => e.CreateUser == currentUser); 
+
             return await filter
                 .Include(e => e.DetailSaleInvoices) 
                 .ThenInclude(e => e.Product)

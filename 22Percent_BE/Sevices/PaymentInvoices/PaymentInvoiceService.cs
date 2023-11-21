@@ -27,9 +27,9 @@ namespace _22Percent_BE.Sevices.PaymentInvoices
            return await _repositoryManagement.PaymentInvoiceRepository.GetAll();
         }
 
-        public async Task<List<Data.Entities.Invoices.SubInvoices.PaymentInvoices>> GetByFilter(SearchPaymentInvoiceDto dto)
+        public async Task<List<Data.Entities.Invoices.SubInvoices.PaymentInvoices>> GetByFilter(SearchPaymentInvoiceDto dto, string currentUser)
         {
-            return await _repositoryManagement.PaymentInvoiceRepository.GetByFilter(dto);
+            return await _repositoryManagement.PaymentInvoiceRepository.GetByFilter(dto, currentUser);
         }
     }
 }

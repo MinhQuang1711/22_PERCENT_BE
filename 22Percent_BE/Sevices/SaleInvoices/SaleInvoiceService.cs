@@ -35,8 +35,7 @@ namespace _22Percent_BE.Sevices.SaleInvoices
 
         public async Task<List<GetSaleInvoiceDto>> GetByFilter(SearchSaleInvoiceDto dto, string currentUser)
         {
-            var saleiInvoice= await _repositoryManagement.saleInvoiceRepository.GetByFilter(dto);
-            saleiInvoice = saleiInvoice.Where(e => e.CreateUser == currentUser).ToList();
+            var saleiInvoice= await _repositoryManagement.saleInvoiceRepository.GetByFilter(dto, currentUser);
             return saleiInvoice.Select(e=> e.ToGetSaleInvoiceDto()).ToList();
         }
 
