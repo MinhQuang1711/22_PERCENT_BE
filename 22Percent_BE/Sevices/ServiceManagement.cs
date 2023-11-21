@@ -1,6 +1,8 @@
 ﻿using _22Percent_BE.Data.Repositories;
+using _22Percent_BE.Data.Repositories.InventoryRepo;
 using _22Percent_BE.Sevices.ImportInvoices;
 using _22Percent_BE.Sevices.Ingredients;
+using _22Percent_BE.Sevices.Inventories;
 using _22Percent_BE.Sevices.PaymentInvoices;
 using _22Percent_BE.Sevices.Products;
 using _22Percent_BE.Sevices.ReportServices;
@@ -14,6 +16,7 @@ namespace _22Percent_BE.Sevices
         private readonly Lazy<ITokenService> _tokenService;
         private readonly Lazy<IReportService> _reportService;
         private readonly Lazy<IProductService> _prductService;
+        private readonly Lazy<IInventoryServices> _inventoryService;
         private readonly Lazy<IIngredientService> _ingredientService;
         private readonly Lazy<ISaleInvoiceService> _saleInvoiceService;
         private readonly Lazy<IImportInvoiceService> _importInvoiceService;
@@ -27,6 +30,8 @@ namespace _22Percent_BE.Sevices
             _reportService = new Lazy<IReportService>(() => new ReportService(repositoryManagement));
 
             _prductService = new Lazy<IProductService>(() => new ProductService(repositoryManagement));
+
+            _inventoryService = new Lazy<IInventoryServices>(() => new InventoryServices(repositoryManagement));
 
             _ingredientService = new Lazy<IIngredientService>(()=> new IngredientService(repositoryManagement));
 
@@ -48,6 +53,8 @@ namespace _22Percent_BE.Sevices
         public ISaleInvoiceService SaleInvoiceService => _saleInvoiceService.Value;
 
         public IIngredientService IngredientService => _ingredientService.Value;
+
+        public IInventoryServices InventoryServices => _inventoryService.Value;
 
         public IProductService ProductService => _prductService.Value;
 

@@ -1,5 +1,6 @@
 ﻿using _22Percent_BE.Data.Repositories.ImportInvoiceRepo;
 using _22Percent_BE.Data.Repositories.IngredientRepo;
+using _22Percent_BE.Data.Repositories.InventoryRepo;
 using _22Percent_BE.Data.Repositories.PaymentInvoiceRepo;
 using _22Percent_BE.Data.Repositories.ProductRepo;
 using _22Percent_BE.Data.Repositories.ReportRepo;
@@ -14,6 +15,7 @@ namespace _22Percent_BE.Data.Repositories
         private readonly Lazy<IUserRepository> _lazyUserRepository;
         private readonly Lazy<IReportRepository> _lazyReportRepository;
         private readonly Lazy<IProductRepository> _lazyProductRepository;
+        private readonly Lazy<IInventoryRepository> _lazyInventoryRepository;
         private readonly Lazy<IIngredientRepository> _lazyIngredientRepository;
         private readonly Lazy<ISaleInvoiceRepository> _lazySaleInvoiceRepository;
         private readonly Lazy<IImportInvoiceRepository> _lazyImportInvoiceRepository;
@@ -27,6 +29,8 @@ namespace _22Percent_BE.Data.Repositories
             _lazyReportRepository = new Lazy<IReportRepository>(() => new ReportRepository(context));
 
             _lazyProductRepository = new Lazy<IProductRepository>(() => new ProductRepository(context));
+
+            _lazyInventoryRepository = new Lazy<IInventoryRepository>(() => new InventoryRepository(context));
 
             _lazySaleInvoiceRepository = new Lazy<ISaleInvoiceRepository>(() => new SaleInvoiceRepository(context));
 
@@ -44,6 +48,8 @@ namespace _22Percent_BE.Data.Repositories
 
         public IProductRepository ProductRepository => _lazyProductRepository.Value;
 
+        public IInventoryRepository InventoryRepository => _lazyInventoryRepository.Value;
+
         public IIngredientRepository IngredientRepository => _lazyIngredientRepository.Value;
 
         public ISaleInvoiceRepository saleInvoiceRepository => _lazySaleInvoiceRepository.Value;
@@ -51,6 +57,7 @@ namespace _22Percent_BE.Data.Repositories
         public IImportInvoiceRepository ImportInvoiceRepository => _lazyImportInvoiceRepository.Value;
 
         public IPaymentInvoiceRepository PaymentInvoiceRepository => _lazyPaymentInvoiceRepository.Value;
+
 
     }
 }
