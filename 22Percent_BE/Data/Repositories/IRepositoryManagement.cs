@@ -2,6 +2,7 @@
 using _22Percent_BE.Data.Repositories.IngredientRepo;
 using _22Percent_BE.Data.Repositories.PaymentInvoiceRepo;
 using _22Percent_BE.Data.Repositories.ProductRepo;
+using _22Percent_BE.Data.Repositories.ReportRepo;
 using _22Percent_BE.Data.Repositories.SaleInvoiceRepo;
 using _22Percent_BE.Data.Repositories.UserRepo;
 
@@ -11,6 +12,8 @@ namespace _22Percent_BE.Data.Repositories
     {
 
         public IUserRepository UserRepository { get; }
+
+        public IReportRepository ReportRepository { get; }
 
         public IProductRepository ProductRepository { get; }
 

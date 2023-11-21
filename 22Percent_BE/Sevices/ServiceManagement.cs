@@ -3,6 +3,7 @@ using _22Percent_BE.Sevices.ImportInvoices;
 using _22Percent_BE.Sevices.Ingredients;
 using _22Percent_BE.Sevices.PaymentInvoices;
 using _22Percent_BE.Sevices.Products;
+using _22Percent_BE.Sevices.ReportServices;
 using _22Percent_BE.Sevices.SaleInvoices;
 using _22Percent_BE.Sevices.Tokens;
 
@@ -11,6 +12,7 @@ namespace _22Percent_BE.Sevices
     public class ServiceManagement : IServiceManagement
     {
         private readonly Lazy<ITokenService> _tokenService;
+        private readonly Lazy<IReportService> _reportService;
         private readonly Lazy<IProductService> _prductService;
         private readonly Lazy<IIngredientService> _ingredientService;
         private readonly Lazy<ISaleInvoiceService> _saleInvoiceService;
@@ -21,6 +23,8 @@ namespace _22Percent_BE.Sevices
         public ServiceManagement(IRepositoryManagement repositoryManagement,IConfiguration configuration, ITokenService tokenService) 
         {
             _tokenService = new Lazy<ITokenService>(() => new TokenService(configuration));
+
+            _reportService = new Lazy<IReportService>(() => new ReportService(repositoryManagement));
 
             _prductService = new Lazy<IProductService>(() => new ProductService(repositoryManagement));
 
@@ -47,7 +51,8 @@ namespace _22Percent_BE.Sevices
 
         public IProductService ProductService => _prductService.Value;
 
-        public ITokenService TokenService => _tokenService.Value;
+        public IReportService ReportService => _reportService.Value;
 
+        public ITokenService TokenService => _tokenService.Value;
     }
 }

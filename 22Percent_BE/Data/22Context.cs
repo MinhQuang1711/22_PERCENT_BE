@@ -9,6 +9,7 @@ namespace _22Percent_BE.Data
         public _22Context(DbContextOptions options) : base(options){ }
 
         public DbSet<User> Users { get; set; }  
+        public DbSet<Report> Reports { get; set; }  
         public DbSet<Product> Products { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<SaleInvoices> SaleInvoices { get; set; }
