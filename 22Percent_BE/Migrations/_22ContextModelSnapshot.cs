@@ -44,7 +44,7 @@ namespace _22Percent_BE.Migrations
 
                     b.HasIndex("IngredientId");
 
-                    b.ToTable("DetailImportInvoices");
+                    b.ToTable("DetailImportInvoices", (string)null);
                 });
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.DetailIngredient", b =>
@@ -73,7 +73,7 @@ namespace _22Percent_BE.Migrations
 
                     b.HasIndex("InventoryId");
 
-                    b.ToTable("DetailIngredients");
+                    b.ToTable("DetailIngredients", (string)null);
                 });
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.DetailProduct", b =>
@@ -101,7 +101,7 @@ namespace _22Percent_BE.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("DetailProducts");
+                    b.ToTable("DetailProducts", (string)null);
                 });
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.DetailSaleInvoice", b =>
@@ -129,7 +129,7 @@ namespace _22Percent_BE.Migrations
 
                     b.HasIndex("SaleInvoiceId");
 
-                    b.ToTable("DetailSaleInvoices");
+                    b.ToTable("DetailSaleInvoices", (string)null);
                 });
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.Ingredient", b =>
@@ -164,7 +164,7 @@ namespace _22Percent_BE.Migrations
 
                     b.HasIndex("CreateUser");
 
-                    b.ToTable("Ingredients");
+                    b.ToTable("Ingredients", (string)null);
                 });
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.Inventory", b =>
@@ -177,7 +177,7 @@ namespace _22Percent_BE.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Inventories");
+                    b.ToTable("Inventories", (string)null);
                 });
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.Invoices.SubInvoices.ImportInvoices", b =>
@@ -199,7 +199,7 @@ namespace _22Percent_BE.Migrations
 
                     b.HasIndex("CreateUser");
 
-                    b.ToTable("ImportInvoices");
+                    b.ToTable("ImportInvoices", (string)null);
                 });
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.Invoices.SubInvoices.PaymentInvoices", b =>
@@ -225,7 +225,7 @@ namespace _22Percent_BE.Migrations
 
                     b.HasIndex("CreateUser");
 
-                    b.ToTable("PaymentInvoices");
+                    b.ToTable("PaymentInvoices", (string)null);
                 });
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.Invoices.SubInvoices.SaleInvoices", b =>
@@ -256,7 +256,7 @@ namespace _22Percent_BE.Migrations
 
                     b.HasIndex("CreateUser");
 
-                    b.ToTable("SaleInvoices");
+                    b.ToTable("SaleInvoices", (string)null);
                 });
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.Product", b =>
@@ -285,7 +285,7 @@ namespace _22Percent_BE.Migrations
 
                     b.HasIndex("CreateUser");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.Report", b =>
@@ -325,7 +325,7 @@ namespace _22Percent_BE.Migrations
 
                     b.HasIndex("CreateUser");
 
-                    b.ToTable("Reports");
+                    b.ToTable("Reports", (string)null);
                 });
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.User", b =>
@@ -339,7 +339,7 @@ namespace _22Percent_BE.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.DetailImportInvoice", b =>
