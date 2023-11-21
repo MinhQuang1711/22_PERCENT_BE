@@ -5,6 +5,7 @@ namespace _22Percent_BE.Data.Entities
     public class User:BaseModel
     {
         public string Password { get; set; }
+        public ICollection<Report> Reports { get; set; }    
         public ICollection<Product> Products { get; set; }
         public ICollection<Ingredient> Ingredients { get; set; }
         public ICollection<SaleInvoices> SaleInvoices { get; set; }

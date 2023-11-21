@@ -37,8 +37,8 @@ namespace _22Percent_BE.Data
             base.OnModelCreating(modelBuilder);
 
             // Config primary key
-
             modelBuilder.Entity<User>().HasKey(e => e.Id);
+            modelBuilder.Entity<Report>().HasKey(e => e.Id);
             modelBuilder.Entity<Product>().HasKey(e=> e.Id);
             modelBuilder.Entity<Ingredient>().HasKey(e=> e.Id);
             modelBuilder.Entity<SaleInvoices>().HasKey(e => e.Id);
@@ -121,6 +121,11 @@ namespace _22Percent_BE.Data
                 .IsRequired();
             modelBuilder.Entity<User>()
                 .HasMany(e => e.PaymentInvoices)
+                .WithOne(e => e.User)
+                .HasForeignKey(e => e.CreateUser)
+                .IsRequired();
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Reports)
                 .WithOne(e => e.User)
                 .HasForeignKey(e => e.CreateUser)
                 .IsRequired();
