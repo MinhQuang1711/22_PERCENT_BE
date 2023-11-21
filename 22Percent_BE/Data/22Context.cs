@@ -16,6 +16,7 @@ namespace _22Percent_BE.Data
         public DbSet<DetailProduct> DetailProducts { get; set; }
         public DbSet<ImportInvoices> ImportInvoices { get; set; }
         public DbSet<PaymentInvoices> PaymentInvoices { get; set; }
+        public DbSet<DetailIngredient> DetailIngredients { get; set; }
         public DbSet<DetailSaleInvoice> DetailSaleInvoices { get; set; }      
         public DbSet<DetailImportInvoice> DetailImportInvoices { get; set; }
 
@@ -40,12 +41,13 @@ namespace _22Percent_BE.Data
             // Config primary key
             modelBuilder.Entity<User>().HasKey(e => e.Id);
             modelBuilder.Entity<Report>().HasKey(e => e.Id);
-            modelBuilder.Entity<Product>().HasKey(e=> e.Id);
+            modelBuilder.Entity<Product>().HasKey(e=> e.Id); 
             modelBuilder.Entity<Ingredient>().HasKey(e=> e.Id);
             modelBuilder.Entity<SaleInvoices>().HasKey(e => e.Id);
             modelBuilder.Entity<DetailProduct>().HasKey(e => e.Id);          
             modelBuilder.Entity<ImportInvoices>().HasKey(e=> e.Id);
             modelBuilder.Entity<PaymentInvoices>().HasKey(e=> e.Id);
+            modelBuilder.Entity<DetailIngredient>().HasKey(e => e.Id);
             modelBuilder.Entity<DetailSaleInvoice>().HasKey(e => e.Id);
             modelBuilder.Entity<DetailImportInvoice>().HasKey(e => e.Id);
 
@@ -130,6 +132,17 @@ namespace _22Percent_BE.Data
                 .WithOne(e => e.User)
                 .HasForeignKey(e => e.CreateUser)
                 .IsRequired();
+
+            /*
+                Config realtionship 1 - 1 between Ingredient with DetailIngredient
+             */
+            modelBuilder.Entity<Ingredient>()
+                .HasOne(e => e.DetailIngredient)
+                .WithOne(e => e.Ingredient)
+                .HasForeignKey<DetailIngredient>(e => e.IngredientId)
+                .IsRequired();
+
+
 
         }
 

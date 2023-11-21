@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _22Percent_BE.Data;
 
@@ -10,9 +11,10 @@ using _22Percent_BE.Data;
 namespace _22Percent_BE.Migrations
 {
     [DbContext(typeof(_22Context))]
-    partial class _22ContextModelSnapshot : ModelSnapshot
+    [Migration("20231121075230_create_table_detail_ingredient")]
+    partial class create_table_detail_ingredient
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,7 +69,7 @@ namespace _22Percent_BE.Migrations
                     b.HasIndex("IngredientId")
                         .IsUnique();
 
-                    b.ToTable("DetailIngredients");
+                    b.ToTable("DetailIngredient");
                 });
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.DetailProduct", b =>
