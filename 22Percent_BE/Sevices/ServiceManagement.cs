@@ -1,5 +1,6 @@
 ﻿using _22Percent_BE.Data.Repositories;
 using _22Percent_BE.Data.Repositories.InventoryRepo;
+using _22Percent_BE.Sevices.DetailIngredientServices;
 using _22Percent_BE.Sevices.ImportInvoices;
 using _22Percent_BE.Sevices.Ingredients;
 using _22Percent_BE.Sevices.Inventories;
@@ -21,6 +22,7 @@ namespace _22Percent_BE.Sevices
         private readonly Lazy<ISaleInvoiceService> _saleInvoiceService;
         private readonly Lazy<IImportInvoiceService> _importInvoiceService;
         private readonly Lazy<IPaymentInvoiceService> _paymentInvoiceService;
+        private readonly Lazy<IDetailIngredientService> _detailIngredientService;
         private readonly Lazy<Authen.IAuthenticationService> _authenticationService;
 
         public ServiceManagement(IRepositoryManagement repositoryManagement,IConfiguration configuration, ITokenService tokenService) 
@@ -40,6 +42,8 @@ namespace _22Percent_BE.Sevices
             _importInvoiceService = new Lazy<IImportInvoiceService>(() => new ImportInvoiceService(repositoryManagement));
 
             _paymentInvoiceService = new Lazy<IPaymentInvoiceService>(() => new PaymentInvoiceService(repositoryManagement));
+
+            _detailIngredientService = new Lazy<IDetailIngredientService>(() => new DetailIngredientService(repositoryManagement));
 
             _authenticationService = new Lazy<Authen.IAuthenticationService>(() => new Authen.AuthenticationService(repositoryManagement,tokenService));
         }
@@ -61,5 +65,7 @@ namespace _22Percent_BE.Sevices
         public IReportService ReportService => _reportService.Value;
 
         public ITokenService TokenService => _tokenService.Value;
+
+        public IDetailIngredientService DetailIngredientService => _detailIngredientService.Value;
     }
 }

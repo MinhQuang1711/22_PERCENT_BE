@@ -1,6 +1,6 @@
 ﻿namespace _22Percent_BE.Data.Entities
 {
-    public class DetailIngredient:BaseModel
+    public class DetailIngredient
     {
     
         public double Weight { get; set; }  

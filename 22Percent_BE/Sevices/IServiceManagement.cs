@@ -1,5 +1,6 @@
 ﻿
 using _22Percent_BE.Data.Repositories.InventoryRepo;
+using _22Percent_BE.Sevices.DetailIngredientServices;
 using _22Percent_BE.Sevices.ImportInvoices;
 using _22Percent_BE.Sevices.Ingredients;
 using _22Percent_BE.Sevices.Inventories;
@@ -14,6 +15,7 @@ namespace _22Percent_BE.Sevices
     public interface IServiceManagement
     {
         public _22Percent_BE.Sevices.Authen.IAuthenticationService AuthenticationService { get; }
+        public IDetailIngredientService DetailIngredientService { get; }
         public IPaymentInvoiceService PaymentInvoiceService { get; }
         public IImportInvoiceService ImportInvoiceService { get; }
         public ISaleInvoiceService SaleInvoiceService { get; }

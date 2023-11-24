@@ -49,7 +49,7 @@ namespace _22Percent_BE.Data
             modelBuilder.Entity<DetailProduct>().HasKey(e => e.Id);          
             modelBuilder.Entity<ImportInvoices>().HasKey(e=> e.Id);
             modelBuilder.Entity<PaymentInvoices>().HasKey(e=> e.Id);
-            modelBuilder.Entity<DetailIngredient>().HasKey(e => e.Id);
+            modelBuilder.Entity<DetailIngredient>().HasKey(e => e.IngredientId);
             modelBuilder.Entity<DetailSaleInvoice>().HasKey(e => e.Id);
             modelBuilder.Entity<DetailImportInvoice>().HasKey(e => e.Id);
 
@@ -137,12 +137,14 @@ namespace _22Percent_BE.Data
 
             /*
                 Config realtionship 1 - 1 between Ingredient with DetailIngredient
-             */
-            modelBuilder.Entity<Ingredient>()
-                .HasOne(e => e.DetailIngredient)
-                .WithOne(e => e.Ingredient)
+            */
+            modelBuilder.Entity<DetailIngredient>()
+                .HasOne(e=> e.Ingredient)
+                .WithOne(e => e.DetailIngredient)
                 .HasForeignKey<DetailIngredient>(e => e.IngredientId)
                 .IsRequired();
+
+
 
             modelBuilder.Entity<Inventory>()
                 .HasMany(e=> e.DetailIngredients)

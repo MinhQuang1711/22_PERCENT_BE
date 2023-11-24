@@ -8,7 +8,7 @@
         public double NetWeight { get; set; }
         public double RealWeight { get; set; }
         public double ImportPrice { get; set; }
-        public DetailIngredient DetailIngredient { get; set; }
+        public DetailIngredient? DetailIngredient { get; set; }
         public ICollection<DetailProduct> DetailProducts { get; set; }
         public ICollection<DetailImportInvoice> DetailImportInvoices { get; set; }  
 

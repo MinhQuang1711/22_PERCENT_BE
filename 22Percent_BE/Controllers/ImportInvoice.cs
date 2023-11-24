@@ -71,13 +71,35 @@ namespace _22Percent_BE.Controllers
         public async Task<IActionResult> Create(CreateImportInvoiceDto dto) 
         {
             try
-            {
+            {            
                 var updateIngredientDtoList = dto.DetailImportInvoice.Select(e => e.ToUpdateIngredientDto()).ToList();
-                var message = await _serviceManagement.IngredientService.updateList(updateIngredientDtoList);
+                var message =await  _serviceManagement.IngredientService.updateList(updateIngredientDtoList);
+                if (message != null)
+                {
+                    return BadRequest(message); 
+                }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+
+            try
+            {
+                var updateDetailIngredientList = dto.ToListDetailIngredient();
+                var message = await _serviceManagement.DetailIngredientService.UpdateList(updateDetailIngredientList, true);
                 if (message != null)
                 {
                     return BadRequest(message);
                 }
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+
+            try
+            {
                 await _serviceManagement.ImportInvoiceService.Create(dto, currentUser);
                 return Ok();
             }

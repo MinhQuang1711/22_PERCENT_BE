@@ -17,7 +17,7 @@ namespace _22Percent_BE.Data.DTOs.DetailIngredients
         {
             return new GetDetailIngredientDto
             {
-                Id = entity.Id,
+                Id = entity.IngredientId,
                 Weight = entity.Weight,
                 TotalCost = entity.ToalCost,
                 IngredientName = entity.Ingredient.Name,
