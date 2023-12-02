@@ -9,7 +9,7 @@ namespace _22Percent_BE.Sevices.SaleInvoices
 
         public Task<GetSaleInvoiceDto?> GetById(string id);
 
-        public Task Create(CreateSaleInvoiceDto dto,string currentUser);
+        public Task<string?> Create(CreateSaleInvoiceDto dto,string currentUser);
 
         public Task<List<GetSaleInvoiceDto>> GetAll(string currentUser);
 

@@ -1,4 +1,5 @@
 ﻿using _22Percent_BE.Data.Repositories.DetailIngredientRepo;
+using _22Percent_BE.Data.Repositories.DetailProductRepo;
 using _22Percent_BE.Data.Repositories.ImportInvoiceRepo;
 using _22Percent_BE.Data.Repositories.IngredientRepo;
 using _22Percent_BE.Data.Repositories.PaymentInvoiceRepo;
@@ -15,6 +16,7 @@ namespace _22Percent_BE.Data.Repositories
         private readonly Lazy<IUserRepository> _lazyUserRepository;
         private readonly Lazy<IReportRepository> _lazyReportRepository;
         private readonly Lazy<IProductRepository> _lazyProductRepository;
+        private readonly Lazy<IDetailProductRepository> _lazyDetailProductRepository;
         private readonly Lazy<IIngredientRepository> _lazyIngredientRepository;
         private readonly Lazy<ISaleInvoiceRepository> _lazySaleInvoiceRepository;
         private readonly Lazy<IImportInvoiceRepository> _lazyImportInvoiceRepository;      
@@ -36,6 +38,8 @@ namespace _22Percent_BE.Data.Repositories
 
             _lazyImportInvoiceRepository = new Lazy<IImportInvoiceRepository>(() => new ImportInvoiceRepository(context));
 
+            _lazyDetailProductRepository = new Lazy<IDetailProductRepository>(() => new DetailProductRepository(context));
+
             _lazyDetailIngredintRepository = new Lazy<IDetailIngredientRepository>(() => new DetailIngredientRepository(context));
 
         }
@@ -55,5 +59,7 @@ namespace _22Percent_BE.Data.Repositories
         public IPaymentInvoiceRepository PaymentInvoiceRepository => _lazyPaymentInvoiceRepository.Value;
 
         public IDetailIngredientRepository DetailIngredientRepository => _lazyDetailIngredintRepository.Value;
+
+        public IDetailProductRepository DetailProductRepository => _lazyDetailProductRepository.Value;
     }
 }

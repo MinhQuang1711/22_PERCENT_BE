@@ -62,6 +62,9 @@ namespace _22Percent_BE.Controllers
             }
         }
 
+        /*
+            Trừ kho số nguyên liệu cấu thành sản phẩm và thêm mới hóa đơn bán
+        */
         [HttpPost("create")]
         public async Task<IActionResult> Create(CreateSaleInvoiceDto dto)
         {
@@ -69,7 +72,11 @@ namespace _22Percent_BE.Controllers
             {
                 if (Enum.IsDefined(typeof(PaymentType), dto.PaymentType))
                 {
-                    await _serviceManagement.SaleInvoiceService.Create(dto, currentUser);
+                    var message= await _serviceManagement.SaleInvoiceService.Create(dto, currentUser);
+                    if (message != null)
+                    {
+                        return BadRequest(message);
+                    }
                     return Ok();
                 }
                 return BadRequest(Message.PaymentTypeNotExist);

@@ -16,7 +16,7 @@ namespace _22Percent_BE.Data.Repositories.SaleInvoiceRepo
         public async Task Create(SaleInvoices saleInvoices)
         {
             _context.SaleInvoices.Add(saleInvoices);
-            await _context.SaveChangesAsync();  
+            await _context.SaveChangesAsync();
         }
 
         public async Task<string?> Delete(string id)

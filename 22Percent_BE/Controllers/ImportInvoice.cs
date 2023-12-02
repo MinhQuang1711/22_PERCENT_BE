@@ -65,7 +65,7 @@ namespace _22Percent_BE.Controllers
         }
 
         /*
-            * Thực hiện update ingredient sau khi thành công sẽ thêm mới ImportInvoice
+            * Thực hiện update ingredient và DetailIngredient sau khi thành công sẽ thêm mới ImportInvoice
         */
         [HttpPost("create")]
         public async Task<IActionResult> Create(CreateImportInvoiceDto dto) 

@@ -144,6 +144,5 @@ namespace _22Percent_BE.Data.Repositories.IngredientRepo
             return Message.IngredientNotExist;
             
         }
-        
     }
 }
