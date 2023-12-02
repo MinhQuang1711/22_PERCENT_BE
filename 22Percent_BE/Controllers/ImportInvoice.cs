@@ -71,41 +71,27 @@ namespace _22Percent_BE.Controllers
         public async Task<IActionResult> Create(CreateImportInvoiceDto dto) 
         {
             try
-            {            
-                var updateIngredientDtoList = dto.DetailImportInvoice.Select(e => e.ToUpdateIngredientDto()).ToList();
-                var message =await  _serviceManagement.IngredientService.updateList(updateIngredientDtoList);
-                if (message != null)
-                {
-                    return BadRequest(message); 
-                }
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-
-            try
             {
                 var updateDetailIngredientList = dto.ToListDetailIngredient();
-                var message = await _serviceManagement.DetailIngredientService.UpdateList(updateDetailIngredientList, true);
-                if (message != null)
-                {
-                    return BadRequest(message);
-                }
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+                var updateIngredientDtoList = dto.DetailImportInvoice.Select(e => e.ToUpdateIngredientDto()).ToList();
+                var messageIngredient = await _serviceManagement.IngredientService.updateList(updateIngredientDtoList);
+                var messageDetailIngredient = await _serviceManagement.DetailIngredientService.UpdateList(updateDetailIngredientList, true);
 
-            try
-            {
+                if (messageIngredient != null)
+                {
+                    return BadRequest(messageIngredient);
+                }
+                if (messageDetailIngredient != null)
+                {
+                    return BadRequest(messageDetailIngredient);
+                }
                 await _serviceManagement.ImportInvoiceService.Create(dto, currentUser);
+
                 return Ok();
             }
             catch (Exception ex)
             {
-                return StatusCode(500,ex.Message);
+                return StatusCode(500, ex.Message);
             }
         }
 

@@ -15,9 +15,9 @@ namespace _22Percent_BE.Data.DTOs.DetailIngredients
         {
             return new DetailIngredient 
             {
-                //Weight = dto.Weight,
-                //ToalCost= dto.TotalCost,
-                //IngredientId= dto.IngredentID,
+                Weight = dto.Weight,
+                ToalCost = dto.TotalCost,
+                IngredientId = dto.IngredentID,
             };
         }
     }
