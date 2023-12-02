@@ -52,10 +52,6 @@ namespace _22Percent_BE.Migrations
                     b.Property<string>("IngredientId")
                         .HasColumnType("varchar(255)");
 
-                    b.Property<string>("InventoryId")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)");
-
                     b.Property<double>("ToalCost")
                         .HasColumnType("double");
 
@@ -63,8 +59,6 @@ namespace _22Percent_BE.Migrations
                         .HasColumnType("double");
 
                     b.HasKey("IngredientId");
-
-                    b.HasIndex("InventoryId");
 
                     b.ToTable("DetailIngredients");
                 });
@@ -158,19 +152,6 @@ namespace _22Percent_BE.Migrations
                     b.HasIndex("CreateUser");
 
                     b.ToTable("Ingredients");
-                });
-
-            modelBuilder.Entity("_22Percent_BE.Data.Entities.Inventory", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("varchar(255)");
-
-                    b.Property<double>("TotalCost")
-                        .HasColumnType("double");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Inventories");
                 });
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.Invoices.SubInvoices.ImportInvoices", b =>
@@ -362,15 +343,7 @@ namespace _22Percent_BE.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("_22Percent_BE.Data.Entities.Inventory", "Inventory")
-                        .WithMany("DetailIngredients")
-                        .HasForeignKey("InventoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Ingredient");
-
-                    b.Navigation("Inventory");
                 });
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.DetailProduct", b =>
@@ -484,11 +457,6 @@ namespace _22Percent_BE.Migrations
                     b.Navigation("DetailIngredient");
 
                     b.Navigation("DetailProducts");
-                });
-
-            modelBuilder.Entity("_22Percent_BE.Data.Entities.Inventory", b =>
-                {
-                    b.Navigation("DetailIngredients");
                 });
 
             modelBuilder.Entity("_22Percent_BE.Data.Entities.Invoices.SubInvoices.ImportInvoices", b =>

@@ -19,23 +19,10 @@ namespace _22Percent_BE.Data.Repositories.IngredientRepo
         }
 
 
-        public async Task<bool> create(CreateIngredientDto ingredientDto,string currentUser)
+        public async Task create(Ingredient ingredient)
         {
-            try
-            {
-                var ingredient= _mapper.Map<Ingredient>(ingredientDto);
-                ingredient.RealWeight = caculatorRealWeight(ingredient.Loss, ingredient.NetWeight);
-                ingredient.Cost = (ingredient.ImportPrice / ingredient.RealWeight);
-                ingredient.CreateUser = currentUser;
-                await _context.Ingredients.AddAsync(ingredient);
-                await _context.SaveChangesAsync();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-
+           _context.Ingredients.Add(ingredient);
+            await _context.SaveChangesAsync();  
         }
 
         private double caculatorRealWeight(double loss,double netWeight)

@@ -35,12 +35,16 @@ namespace _22Percent_BE.Controllers
             {
                 return BadRequest("Giá nguyên liệu phải lớn hơn 0");
             }
-            var result = await _serviceManagement.IngredientService.create(create,currentUser);
-            if (result == true)
+            try
             {
-                return Ok();
+                await _serviceManagement.IngredientService.create(create, currentUser);
+                return Ok(); 
             }
-            return StatusCode(500);
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+           
         }
 
         [HttpPost("Search-By-Filter")]

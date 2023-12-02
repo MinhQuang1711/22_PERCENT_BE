@@ -11,7 +11,6 @@ namespace _22Percent_BE.Data
         public DbSet<User> Users { get; set; }  
         public DbSet<Report> Reports { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Inventory> Inventories { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<SaleInvoices> SaleInvoices { get; set; }
         public DbSet<DetailProduct> DetailProducts { get; set; }
@@ -43,7 +42,6 @@ namespace _22Percent_BE.Data
             modelBuilder.Entity<User>().HasKey(e => e.Id);
             modelBuilder.Entity<Report>().HasKey(e => e.Id);
             modelBuilder.Entity<Product>().HasKey(e=> e.Id); 
-            modelBuilder.Entity<Inventory>().HasKey(e=> e.Id);  
             modelBuilder.Entity<Ingredient>().HasKey(e=> e.Id);
             modelBuilder.Entity<SaleInvoices>().HasKey(e => e.Id);
             modelBuilder.Entity<DetailProduct>().HasKey(e => e.Id);          
@@ -142,15 +140,7 @@ namespace _22Percent_BE.Data
                 .HasOne(e=> e.Ingredient)
                 .WithOne(e => e.DetailIngredient)
                 .HasForeignKey<DetailIngredient>(e => e.IngredientId)
-                .IsRequired();
-
-
-
-            modelBuilder.Entity<Inventory>()
-                .HasMany(e=> e.DetailIngredients)
-                .WithOne(e=> e.Inventory)
-                .HasForeignKey(e=>e.InventoryId)
-                .IsRequired();    
+                .IsRequired();   
 
 
 

@@ -13,20 +13,6 @@ namespace _22Percent_BE.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Inventories",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    TotalCost = table.Column<double>(type: "double", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Inventories", x => x.Id);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -236,9 +222,7 @@ namespace _22Percent_BE.Migrations
                     IngredientId = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Weight = table.Column<double>(type: "double", nullable: false),
-                    ToalCost = table.Column<double>(type: "double", nullable: false),
-                    InventoryId = table.Column<string>(type: "varchar(255)", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    ToalCost = table.Column<double>(type: "double", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -247,12 +231,6 @@ namespace _22Percent_BE.Migrations
                         name: "FK_DetailIngredients_Ingredients_IngredientId",
                         column: x => x.IngredientId,
                         principalTable: "Ingredients",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_DetailIngredients_Inventories_InventoryId",
-                        column: x => x.InventoryId,
-                        principalTable: "Inventories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -331,11 +309,6 @@ namespace _22Percent_BE.Migrations
                 column: "IngredientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DetailIngredients_InventoryId",
-                table: "DetailIngredients",
-                column: "InventoryId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_DetailProducts_IngredientID",
                 table: "DetailProducts",
                 column: "IngredientID");
@@ -408,9 +381,6 @@ namespace _22Percent_BE.Migrations
 
             migrationBuilder.DropTable(
                 name: "ImportInvoices");
-
-            migrationBuilder.DropTable(
-                name: "Inventories");
 
             migrationBuilder.DropTable(
                 name: "Ingredients");
