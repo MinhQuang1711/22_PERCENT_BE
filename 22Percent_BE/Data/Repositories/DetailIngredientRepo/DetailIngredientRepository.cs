@@ -54,5 +54,12 @@ namespace _22Percent_BE.Data.Repositories.DetailIngredientRepo
             return null;
            
         }
+
+        public async Task<List<DetailIngredient>> GetAllByUserName(string userName)
+        {
+            return await _context.DetailIngredients
+                 .Include(e => e.Ingredient)
+                 .ToListAsync();
+        }
     }
 }

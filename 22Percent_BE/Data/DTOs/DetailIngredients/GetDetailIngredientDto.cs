@@ -2,7 +2,7 @@
 
 namespace _22Percent_BE.Data.DTOs.DetailIngredients
 {
-    public class GetDetailIngredientDto: BaseModel
+    public class GetDetailIngredientDto
     {
 
         public double Weight { get; set; }
@@ -11,13 +11,18 @@ namespace _22Percent_BE.Data.DTOs.DetailIngredients
 
     }
 
+    public class GetInventoryDto
+    {
+        public List<GetDetailIngredientDto> IngredientStocks { get; set; }
+        public double SumCost { get; set; }
+    }
+
     public static class GetDetailIngredientDtoEx
     {
         public static GetDetailIngredientDto ToGetDetailIngredientDto(this DetailIngredient entity)
         {
             return new GetDetailIngredientDto
             {
-                Id = entity.IngredientId,
                 Weight = entity.Weight,
                 TotalCost = entity.ToalCost,
                 IngredientName = entity.Ingredient.Name,

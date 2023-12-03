@@ -13,6 +13,17 @@ namespace _22Percent_BE.Sevices.DetailIngredientServices
             _repositoryManagement = repositoryManagement;
         }
 
+        public async Task<GetInventoryDto> GetAllByUserName(string userName)
+        {
+            var entities= await _repositoryManagement.DetailIngredientRepository.GetAllByUserName(userName);
+
+            return new GetInventoryDto
+            {
+                SumCost = entities.Sum(e => e.ToalCost),
+                IngredientStocks= entities.Select(e=> e.ToGetDetailIngredientDto()).ToList()
+            };
+        }
+
         public async Task<string?> UpdateList(List<UpdateDetailIngredientDto> dtos, bool isPlusWeight)
         {
             var detailIngredinets = dtos.Select(e=> e.ToDetailIngredient()).ToList();
