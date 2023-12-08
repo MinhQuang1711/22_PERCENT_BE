@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace _22Percent_BE.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/authen")]
     [ApiController]
     public class Authen : ControllerBase
     {

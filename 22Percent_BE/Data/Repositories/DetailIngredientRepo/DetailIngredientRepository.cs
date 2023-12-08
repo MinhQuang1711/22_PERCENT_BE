@@ -59,7 +59,18 @@ namespace _22Percent_BE.Data.Repositories.DetailIngredientRepo
         {
             return await _context.DetailIngredients
                  .Include(e => e.Ingredient)
+                 .Where(e => e.Ingredient.CreateUser == userName)
                  .ToListAsync();
+        }
+
+        public async Task<List<DetailIngredient>> GetByIngredientName(string ingredientName, string userName)
+        {
+            var defaulTypeSearch = StringComparison.OrdinalIgnoreCase;
+            return await _context.DetailIngredients
+                .Include(e => e.Ingredient)
+                .Where(e => e.Ingredient.CreateUser == userName)
+                .Where(e => e.Ingredient.Name.Contains(ingredientName, defaulTypeSearch))
+                .ToListAsync();
         }
     }
 }

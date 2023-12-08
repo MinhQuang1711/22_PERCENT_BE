@@ -32,5 +32,19 @@ namespace _22Percent_BE.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+        [HttpGet("get-by-ingredient-name")]
+        public async Task<IActionResult> GetByIngredientName(string ingredientName)
+        {
+            try
+            {
+                var dto = await _serviceManagement.DetailIngredientService.GetByIngredientName(currentUser, ingredientName);
+                return Ok(dto);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }

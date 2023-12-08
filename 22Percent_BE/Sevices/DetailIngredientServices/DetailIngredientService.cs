@@ -13,6 +13,12 @@ namespace _22Percent_BE.Sevices.DetailIngredientServices
             _repositoryManagement = repositoryManagement;
         }
 
+        public async Task<List<GetDetailIngredientDto>> GetByIngredientName(string userName, string ingredientName)
+        {
+            var entities = await _repositoryManagement.DetailIngredientRepository.GetByIngredientName(ingredientName,userName);
+            return entities.Select(e => e.ToGetDetailIngredientDto()).ToList();
+        }
+
         public async Task<GetInventoryDto> GetAllByUserName(string userName)
         {
             var entities= await _repositoryManagement.DetailIngredientRepository.GetAllByUserName(userName);
