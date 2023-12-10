@@ -54,7 +54,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseMiddleware<JwtMiddlerware>();
+//app.UseMiddleware<JwtMiddlerware>();
 app.UseCors("CrosPolicy");
 
 app.UseHttpsRedirection();
