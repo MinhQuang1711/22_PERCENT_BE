@@ -33,7 +33,7 @@ namespace _22Percent_BE.Data.DTOs.Products
 
         static double GetCost(List<DetailProduct>list) 
         {
-            return list.Sum(e => e.Cost);
+            return list.Sum(e => e.Cost*e.Weight);
         }
     }
 }

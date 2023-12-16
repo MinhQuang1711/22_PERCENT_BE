@@ -6,6 +6,7 @@ namespace _22percent_be.data.dtos.detailproducts
     public class GetDetailProductDto
     {
         public string IngredientName { get; set; }
+        public string IngredientId { get; set; }
         public double Weight { get; set; } 
         public double Cost { get; set; }
     }
@@ -17,6 +18,7 @@ namespace _22percent_be.data.dtos.detailproducts
             return new GetDetailProductDto
             {
                 IngredientName=value.Ingredient.Name, 
+                IngredientId=value.Ingredient.Id,
                 Weight = value.Weight,
                 Cost = value.Cost, 
             };

@@ -8,7 +8,7 @@ using System.Security.Claims;
 namespace _22Percent_BE.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/ingredient")]
     [ApiController]
     public class Ingredients : ControllerBase
     {
@@ -20,7 +20,7 @@ namespace _22Percent_BE.Controllers
             _serviceManagement= serviceManagement;
         }
 
-        [HttpGet("Get-All")]
+        [HttpGet("get-all")]
         public async Task<IActionResult> GetAll() 
         {
             var ingredients = await _serviceManagement.IngredientService.getAll();
@@ -28,7 +28,7 @@ namespace _22Percent_BE.Controllers
             return Ok(ingredients);
         }
 
-        [HttpPost("Create")]
+        [HttpPost("create")]
         public async Task<IActionResult> create(CreateIngredientDto create)
         {
             if (create.ImportPrice == 0)
@@ -47,7 +47,7 @@ namespace _22Percent_BE.Controllers
            
         }
 
-        [HttpPost("Search-By-Filter")]
+        [HttpPost("search-by-filter")]
         public async Task<IActionResult> searchByFilter(SearchIngredientDto search)
         {
             var result= await _serviceManagement.IngredientService.searchByFilter(search);
@@ -66,7 +66,7 @@ namespace _22Percent_BE.Controllers
             return StatusCode(204);
         }
 
-        [HttpPut("Update")]
+        [HttpPut("update")]
         public async Task<IActionResult> update(UpdateIngredientDto update)
         {
             if (update.ImportPrice == 0)
@@ -81,7 +81,7 @@ namespace _22Percent_BE.Controllers
             return NotFound(result);
         }
 
-        [HttpDelete("Delete")]
+        [HttpDelete("delete")]
         public async Task<IActionResult> delete(IngredientSaechByIdDto delete)
         {
             var result = await _serviceManagement.IngredientService.detete(delete.Id);

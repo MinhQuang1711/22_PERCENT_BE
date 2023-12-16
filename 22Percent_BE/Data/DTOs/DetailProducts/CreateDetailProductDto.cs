@@ -21,9 +21,9 @@ namespace _22Percent_BE.Data.DTOs.DetailProducts
 
             return new DetailProduct
             {
+                Cost = dto.Cost,
                 Weight = dto.Weight,
                 ProductId = productId,
-                Cost = dto.Cost * dto.Weight,
                 IngredientID = dto.IngredientId,
             };
         }
